@@ -2,7 +2,7 @@
     import { i18n } from '$lib/i18n';
     import { ParaglideJS } from '@inlang/paraglide-sveltekit';
     import { type CSSRuntimeProvider as CSSProviderType, Fragment } from '@master/css.svelte';
-    import { type Snippet, onMount } from 'svelte';
+    import { onMount, type Snippet } from 'svelte';
     import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { LayoutData } from './$types';
@@ -20,9 +20,6 @@
     const { children, data }: Props = $props();
 
     let CSSRuntimeProvider: typeof CSSProviderType = $state(Fragment);
-    $effect(() => {
-        document.documentElement.lang = data.language;
-    });
 
     onMount(async () => {
         const { CSSRuntimeProvider: runtime } = await import('@master/css.svelte');
@@ -30,7 +27,7 @@
     });
 </script>
 
-<svelte:component config={import('../../master.css')} this={CSSRuntimeProvider}>
+<CSSRuntimeProvider config={import('../../master.css')}>
     <ParaglideJS {i18n}>
         <Header />
         <main class="bg:base fg:base pt:4x">
@@ -38,6 +35,6 @@
         </main>
         <Footer footerText={data.footerText} />
     </ParaglideJS>
-</svelte:component>
+</CSSRuntimeProvider>
 
 <style></style>

@@ -6,7 +6,7 @@
 
     const { description, title }: Props = $props();
 
-    const siteTitle = 'TNTMan1671';
+    const siteTitle = "Suya's Chaos Portal";
     const formattedTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 </script>
 

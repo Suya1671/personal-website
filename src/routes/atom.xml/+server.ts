@@ -42,7 +42,7 @@ export const GET: RequestHandler = async () => {
     return new Response(body, options);
 };
 
-const _render = (posts: ({ language: AvailableLanguageTag } & App.BlogPost)[]) =>
+const _render = (posts: (App.BlogPost & { language: AvailableLanguageTag })[]) =>
     `
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -53,11 +53,13 @@ const _render = (posts: ({ language: AvailableLanguageTag } & App.BlogPost)[]) =
 
   <link href="https://wobbl.in/posts" />
   <link href="https://wobbl.in/atom.xml" rel="self" type="application/atom+xml" />
+  <link rel="license" type="application/rdf+xml"
+  href="http://creativecommons.org/licenses/by-nc/4.0/rdf" />
 
   <updated>${new Date(posts[0]!.updated).toISOString()}</updated>
 
   <author>
-    <name>Suyashtnt</name>
+    <name>Suya</name>
     <email>Suyashtnt@gmail.com</email>
     <uri>https://wobbl.in</uri>
   </author>
@@ -66,8 +68,7 @@ const _render = (posts: ({ language: AvailableLanguageTag } & App.BlogPost)[]) =
 </feed>
 `.trim();
 
-// TODO: copyright (still figuring it out)
-const _renderPost = (post: { language: string } & App.BlogPost) =>
+const _renderPost = (post: App.BlogPost & { language: string }) =>
     `
 <entry>
     <title>${post.title}</title>
@@ -81,6 +82,8 @@ const _renderPost = (post: { language: string } & App.BlogPost) =>
         hreflang="${post.language}"
         type="text/html"
     />
+    <link rel="license" type="application/rdf+xml"
+    href="http://creativecommons.org/licenses/by-nc/4.0/rdf" />
 
     <author>
         <name>${post.author}</name>

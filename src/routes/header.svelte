@@ -1,4 +1,6 @@
 <script lang="ts">
+    import type { Component, Snippet } from 'svelte';
+
     import { page } from '$app/stores';
     import * as m from '$i18n/messages';
     import { type AvailableLanguageTag, availableLanguageTags, languageTag } from '$i18n/runtime';
@@ -11,27 +13,31 @@
 
     const translateLanguage = (language: AvailableLanguageTag) => {
         switch (language) {
-            case 'en':
-                return m.lang_en();
             case 'af':
                 return m.lang_af();
+            case 'en':
+                return m.lang_en();
             default:
                 return language;
         }
     };
 </script>
 
-{#snippet dropdownSection(title, Icon, content)}
-    <span>
-        <Icon class="vertical:middle" />
-        {title}
-    </span>
+{#snippet dropdownSection(title: string, Icon: Component, content: Snippet)}
+    <div
+        class="flex rel bg:surface fg:surface flex:col@<2xs mb:2x:not(:last)@<2xs px:4x py:2x r:5x text:left"
+    >
+        <span>
+            <Icon class="inline vertical:middle" />
+            {title}
+        </span>
 
-    {@render content()}
+        {@render content()}
+    </div>
 {/snippet}
 
 {#snippet links()}
-    <div class="flex rel bg:surface fg:surface flex:col@<2xs mb:2x@<2xs p:2x r:6x text:left">
+    <div class="bg:surface fg:surface p:2x@2xs r:6x text:left">
         <ul class={'r:6x transition:all|300ms my:0 flex flex:col@<2xs pl:0 pr:2x text:5x'}>
             <li class="list-style:none">
                 <a class="flex align-items:center fg:base fg:base:visited flex:row" href="/">
@@ -73,9 +79,13 @@
     class="flex rel sticky@sm align-items:center bd:blur(8x) border:2|subtle/.80 h:12x justify-content:space-between mb:4x mx:4x r:6x top:4x z:10"
 >
     <section class="flex align-items:center gap:2x justify-content:space-between">
-        <a class="flex place-items:center" href="/posts/the-wobbler">
+        <a
+            class="flex place-items:center"
+            href="/posts/the-wobbler"
+            aria-label={m.profile_picture_caption()}
+        >
             <enhanced:img
-                alt="TNTMAN_1671"
+                alt="My profile picture, a badly drawn Wobbler from Totally Accurate Battle Simulator."
                 class={'aspect-square size:12x r:full align-items:center ~duration:300 ~transform ~shadow {scale(1.3);r:2x;shadow:4x}:hover block'}
                 sizes="32px 48px 64px"
                 src="$lib/pictures/wobbler.png"
@@ -84,7 +94,7 @@
         </a>
 
         <h1 class="my:0 text:6x">
-            <a class="fg:base fg:base:visited" href="/"> TNTMAN_1671 </a>
+            <a class="fg:base fg:base:visited" href="/"> Suya's Chaos Portal </a>
         </h1>
     </section>
 

@@ -1,16 +1,18 @@
 <script lang="ts">
     import * as m from '$i18n/messages';
+    import { languageTag } from '$i18n/runtime';
     import PageHead from '$lib/components/page-head.svelte';
     import Giscus from '@giscus/svelte';
-    import { createTableOfContents } from '@melt-ui/svelte';
     import '@portaljs/remark-callouts/styles.css';
+    import { createTableOfContents } from '@melt-ui/svelte';
+    import { type Component } from 'svelte';
     import { setupViewTransition } from 'sveltekit-view-transition';
+
+    import './giscus.css';
 
     import type { PageData } from './$types';
 
-    import './giscus.css';
     import ToC from './table-of-contents.svelte';
-    import { type SvelteComponent, onMount } from 'svelte';
 
     interface Props {
         data: PageData;
@@ -26,11 +28,12 @@
         throw new Error('Missing date or updated in frontmatter');
     }
 
-    let component: SvelteComponent | null = $state(null)
-    onMount(async () => {
-        /* @vite-ignore */
-        component = await import(data.frontmatter.path).then(comp => comp.default)
-    })
+    let Content: null | Component = $state(null);
+    $effect(() => {
+        import(data.frontmatter.path).then((comp) => {
+            Content = comp.default;
+        });
+    });
 
     // Svelte's template doesn't recognize the type narrowing done above
     const description = data.frontmatter.description;
@@ -79,15 +82,15 @@
     >
         <header class="mb:3x py:4x">
             <hr
-                class="$from:text-primary $to:secondary gradient(45deg,var(--from),var(--to)) h:.5x"
+                class="$from:text-primary $to:secondary gradient(45deg,var(--from),var(--to)) h:1x border:none r:2x"
             />
 
-            <h1 class="text:center" use:transition={`post-title-${data.slug}`}>
+            <h1 class="text:center text:8x" use:transition={`post-title-${data.slug}`}>
                 {data.frontmatter.title}
             </h1>
 
             <hr
-                class="$from:text-primary $to:secondary gradient(-45deg,var(--from),var(--to)) h:.5x"
+                class="$from:secondary $to:text-primary gradient(45deg,var(--from),var(--to)) h:1x border:none r:2x"
             />
 
             <p class="my-0 fg:subtle opacity:.9" use:transition={`post-dates-${data.slug}`}>
@@ -96,15 +99,15 @@
                     updated: dateFormatter.format(dateModified)
                 })}
                 {#if draft}
-                    | <span class="text-light-red dark:text-dark-red">{m.post_card_draft()}</span>
+                    | <span class="fg:red">{m.post_card_draft()}</span>
                 {/if}
             </p>
         </header>
 
         <p class="max-w:calc(100vw-2rem)">
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-            {#if component}
-                <svelte:component this={component}></svelte:component>
+             {#if Content}
+                <Content />
             {:else}
                 {@html data.postHtml}
             {/if}
@@ -115,7 +118,7 @@
             categoryId="DIC_kwDOI0N8xs4Caho4"
             emitMetadata="1"
             inputPosition="top"
-            lang={data.language}
+            lang={languageTag()}
             loading="lazy"
             mapping="og:title"
             reactionsEnabled="1"

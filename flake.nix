@@ -17,7 +17,11 @@
           nodejs
           alejandra
           nodePackages.svelte-language-server
-          nodePackages.typescript-language-server marksman pkgs.stdenv.cc.cc.lib];
+          nodePackages.pnpm
+          nodePackages.typescript-language-server
+          marksman
+          pkgs.stdenv.cc.cc.lib
+        ];
       };
     });
 }

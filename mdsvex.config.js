@@ -7,6 +7,7 @@ import remarkCallouts from "@portaljs/remark-callouts";
 import { codeToHtml } from 'shiki';
 
 import syntaxDark from './syntax-dark.json' assert { type: 'json' };
+import syntaxLight from './syntax-light.json' assert { type: 'json' };
 
 /**
  * @param {string} code
@@ -29,7 +30,7 @@ async function highlighter(code, lang = '') {
 		lang,
 		themes: {
 			dark: syntaxDark,
-			light: 'github-light'
+			light: syntaxLight
 		}
 	});
 

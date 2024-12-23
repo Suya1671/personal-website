@@ -1,4 +1,6 @@
-<script context="module" lang="ts">
+<script module lang="ts">
+    import type { Component } from 'svelte';
+
     export interface ISkill {
         /**
          * Very short description or tagline of the skill
@@ -11,7 +13,7 @@
         /**
          * Preferably SVG, 1:1 aspect ratio
          */
-        icon: string;
+        icon: Component;
         id: string;
         /**
          * Name of the skill
@@ -38,14 +40,12 @@
         skill: ISkill;
     }
     const { isSelected, skill }: Props = $props();
+
+    let outline = isSelected ? 'outline:primary|solid' : 'outline:transparent';
 </script>
 
 <a
-    class="flex align-items:center gap:4x outline:2 px:4x r:4x text-decoration:none text:overlay text:overlay:visited {(
-        isSelected
-    ) ?
-        'outline:primary|solid'
-    :   'outline:transparent'}"
+    class="flex align-items:center gap:4x outline:2 px:4x py:2x r:4x text-decoration:none text:overlay text:overlay:visited {outline}"
     data-sveltekit-noscroll
     href={`/?skill=${skill.id}`}
 >

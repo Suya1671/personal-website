@@ -1,7 +1,7 @@
 ---
 title: 'The badly drawn wobbler'
 description: 'From Minecraft mod to profile picture: The origins of the badly drawn wobbler and my other miscellaneous usernames.'
-author: 'A badly drawn wobbler (AKA Suyashtnt, TNTMan1671)'
+author: 'A badly drawn wobbler'
 date: '2023-06-30 20:06'
 updated: '2023-06-30 20:06'
 published: true
@@ -13,7 +13,12 @@ import FirstImage from '$lib/pictures/posts/the-wobbler/first-image.png?enhanced
 import Refined from '$lib/pictures/posts/the-wobbler/refined.png?enhanced'
 import Upscaled from '$lib/pictures/posts/the-wobbler/upscaled.png?enhanced'
 import YouShouldMakeItYourPfp from '$lib/pictures/posts/the-wobbler/make-it-your-pfp.png?enhanced'
+import Note from '$lib/components/note.svelte'
 </script>
+
+<Note>
+Note: New name drop. I'll create a follow up post when I'm more public about it.
+</Note>
 
 
 In the distant past of... 2016, young me decided that I was going to be a _Youtuber!_ Whether that was a good idea or not is debatable, but I remember clearly that I wanted to have one of those cringe as hell gaming intros with what is equivalent to the average YouTube family content creator personality. I started my first channel, under the name of `TNT MAN!!!`. You can already see the 8 year old energy in that. That would evolve into `TNT Man Inc` and now it's settled as `A badly drawn wobbler`. _(switch to youtube family creator voice)_ _**But wait!**_ Why a _badly drawn wobbler_? Why was I a **MAN MADE OUT OF TNT IN THE FIRST PLACE!!!** Why was _this mysterious wobbler_ chosen above **_ALL ELSE!?_**
@@ -48,7 +53,7 @@ The main block of the Sushal dimension was the Sushal block. There were a few op
 -   Literal sushi (boring)
 -   My discord profile picture (sure I guess; Why not?)
 
-So, the first version of the mod had my discord profile as the texture. 
+So, the first version of the mod had my discord profile as the texture.
 The issue was that my discord profile picture was Landfall's [TABS Emoji](https://cdn.discordapp.com/emojis/230177740454625281.webp?quality=lossless) <img src="https://cdn.discordapp.com/emojis/230177740454625281.webp?quality=lossless" alt="Landfall's TABS emoji on discord" class="h:auto w:1em! verical:middle inline-block">. This emoji is what's known as a wobbler, the base humanoid-style unit in TABS. Me at the time thought "Wait since landfall owns this emoji they may not like it." I asked my friend about that. This was the response:
 
 <figure>

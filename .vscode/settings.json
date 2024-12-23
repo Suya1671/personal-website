@@ -1,6 +1,6 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"cSpell.words": [
-		"Tauri"
-	]
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "cSpell.words": [
+        "Tauri"
+    ]
 }

@@ -1,25 +1,23 @@
 <script lang="ts">
-    import type { AvailableLanguageTag } from '$i18n/runtime';
-
     import * as m from '$i18n/messages';
+    import { languageTag } from '$i18n/runtime';
     import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { PageData } from '../../routes/(landing)/$types';
 
     interface Props {
-        lang: AvailableLanguageTag;
         posts: PageData['posts'];
     }
-    const { lang, posts }: Props = $props();
+    const { posts }: Props = $props();
 
     const getLocaleFromLanguageTag = () => {
-        switch (lang) {
-            case 'en':
-                return 'en-uk';
+        switch (languageTag()) {
             case 'af':
                 return 'af-za';
+            case 'en':
+                return 'en-uk';
             default:
-                throw new Error(`Unknown language tag: ${lang}`);
+                throw new Error(`Unknown language tag: ${languageTag()}`);
         }
     };
 
@@ -35,26 +33,27 @@
     const { transition } = setupViewTransition();
 </script>
 
-<ul class="flex flex:wrap gap:4x list-style:none mx:4x mx:8x@md p:0">
+<ul class="flex flex:wrap list-style:none mx:4x mx:8x@md p:0 r:6x">
     {#each posts as post (post.slug)}
-        <li class={'flex:grow flex:shrink flex:280px'}>
+        <li class="flex:1|1|330px m:2x mb:8x transform:scale(1.05):hover transition:all|300ms">
             <a
-                class="bg:surface fg:surface fg:surface:visited text-decoration:none"
+                class="group fg:surface fg:surface:visited text-decoration:none"
                 href="/posts/{post.slug}"
             >
                 <article
-                    class="flex bg:overlay flex:col h:full px:6x r:4x"
+                    class="flex bg:surface bg:overlay:hover flex:col h:full px:4x py:3x r:6x transition:all|300ms"
                     use:transition={`post-${post.slug}`}
                 >
                     <header>
                         <h1
-                            class="fg:primary mb:2 text:underline:hover"
+                            class="casl:0.8 fg:primary mb:1x text:underline:hover"
                             use:transition={`post-title-${post.slug}`}
                         >
                             {post.title}
                         </h1>
-                        <div
-                            class="fg:subtle/.80"
+
+                        <p
+                            class="opacity:.7"
                             role="doc-subtitle"
                             use:transition={`post-dates-${post.slug}`}
                         >
@@ -62,10 +61,10 @@
                                 published: dateFormatter.format(new Date(post.date)),
                                 updated: dateFormatter.format(new Date(post.updated))
                             })}
-                        </div>
+                        </p>
                     </header>
 
-                    <footer>
+                    <footer class="my:2x">
                         <p>{post.description}</p>
                     </footer>
                 </article>

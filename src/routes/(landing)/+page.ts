@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { marked } from 'marked'; // Import the marked lib
+
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = ({ data, url }) => {

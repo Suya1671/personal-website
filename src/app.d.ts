@@ -2,21 +2,11 @@
 
 import 'svelte';
 import 'unplugin-icons/types/svelte';
+import type { AvailableLanguageTag } from '$lib/paraglide/runtime';
+import type { ParaglideLocals } from '@inlang/paraglide-sveltekit';
 
 declare global {
     namespace App {
-        // Interface Error {}
-        // interface Locals {}
-        // interface PageData {}
-        // interface Platform {}
-
-        type MdsvexFile = {
-            default: SvelteComponent;
-            metadata: BlogPost & Record<string, string>;
-        };
-
-        type MdsvexResolver = () => Promise<MdsvexFile>;
-
         type BlogPost = {
             author: string;
             component: typeof import('svelte').SvelteComponent;
@@ -27,6 +17,20 @@ declare global {
             title: string;
             updated: string;
         };
+        // interface PageData {}
+        // interface Platform {}
+
+        // Interface Error {}
+        interface Locals {
+            paraglide: ParaglideLocals<AvailableLanguageTag>;
+        }
+
+        type MdsvexFile = {
+            default: SvelteComponent;
+            metadata: BlogPost & Record<string, string>;
+        };
+
+        type MdsvexResolver = () => Promise<MdsvexFile>;
     }
 
     module '*as=optimize' {

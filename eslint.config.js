@@ -1,8 +1,8 @@
 import js from '@eslint/js';
-import masterCssPlugin from '@master/eslint-plugin-css';
+import css from '@master/eslint-config-css';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
-import perfectionistNatural from 'eslint-plugin-perfectionist/configs/recommended-natural';
+import perfectionist from 'eslint-plugin-perfectionist';
 import prettierPlugin from 'eslint-plugin-prettier';
 import prettierPluginReccomended from 'eslint-plugin-prettier/recommended';
 import sveltePlugin from 'eslint-plugin-svelte';
@@ -17,21 +17,14 @@ const defaultRules = {
 };
 
 /**
- * @type {import("eslint").Linter.FlatConfig[]}
+ * @type {import("eslint").Linter.Config[]}
  */
 export default [
     {
         ignores: ['.svelte-kit/**/*', 'node_modules/**/*']
     },
     js.configs.recommended,
-    {
-        files: ['**/*.ts', '**/*.svelte'],
-        plugins: masterCssPlugin.configs.flat.plugins,
-        rules: masterCssPlugin.configs.flat.rules
-    },
-    {
-        files: ['**/*.js', '**/*.cjs']
-    },
+    css,
     {
         files: ['**/*.ts'],
         languageOptions: {
@@ -72,6 +65,6 @@ export default [
             // ...sveltePlugin.configs.prettier.rules,
         }
     },
-    perfectionistNatural,
+    perfectionist.configs['recommended-natural'],
     prettierPluginReccomended
 ];

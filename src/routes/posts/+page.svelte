@@ -13,4 +13,4 @@
 <PageHead description="My blog posts" title="Posts" />
 
 <h1 class="ml:4x ml:8x@md text:10x">Posts</h1>
-<Posts lang={data.language} posts={data.posts} />
+<Posts posts={data.posts} />

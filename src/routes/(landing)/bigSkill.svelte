@@ -57,7 +57,7 @@
 
     <!-- chips -->
     <section class="flex gap:2x">
-        {#snippet chipContent(content)}
+        {#snippet chipContent(content: string)}
             <p class="fg:black my:0 text:5x">
                 {content}
             </p>
@@ -77,8 +77,7 @@
             class:bg:blue={selectedSkill?.type === 'Tool'}
             class:bg:green={selectedSkill?.type === 'Language'}
             class:bg:orange={selectedSkill?.type === 'Framework'}
-            class:bg:purple={selectedSkill?.type === 'Other'}
-            class:bg:purple={selectedSkill?.type === 'Backend'}
+            class:bg:purple={selectedSkill?.type === 'Other' || selectedSkill?.type === 'Backend'}
             class:bg:teal={selectedSkill?.type === 'Frontend'}
         >
             {@render chipContent(type)}

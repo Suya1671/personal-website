@@ -1,5 +1,7 @@
 <script lang="ts">
-    import { type TableOfContentsElements, type TableOfContentsItem, melt } from '@melt-ui/svelte';
+    import { melt, type TableOfContentsElements, type TableOfContentsItem } from '@melt-ui/svelte';
+
+    import ToC from './table-of-contents.svelte';
 
     const {
         item,
@@ -23,16 +25,13 @@
                 <a
                     class="relative absolute::after ~all::after text:none block:after ~duration:300::after bg:none::after bg:repeat::after bg:scroll::after bottom:0::after fg:base fg:base:visited h:1:after text-decoration:none w:0::after w:full[data-active]::after w:full:hover::after"
                     class:bg:blue::after={level === 6}
-                    class:bg:purple::after={level === 1}
-                    class:bg:purple::after={level === 2}
+                    class:bg:purple::after={level === 1 || level === 2}
                     class:bg:red::after={level === 3}
                     class:bg:teal::after={level === 5}
                     class:bg:yellow::after={level === 4}
                     class:fg:blue:hover={level === 6}
-                    class:fg:blue:visited:hover={level === 2}
-                    class:fg:blue:visited:hover={level === 6}
-                    class:fg:purple:hover={level === 1}
-                    class:fg:purple:hover={level === 2}
+                    class:fg:blue:visited:hover={level === 2 || level === 6}
+                    class:fg:purple:hover={level === 1 || level === 2}
                     class:fg:purple:visited:hover={level === 1}
                     class:fg:red:hover={level === 3}
                     class:fg:red:visited:hover={level === 3}
@@ -48,7 +47,7 @@
             </li>
             {#if heading.children && heading.children.length}
                 <li>
-                    <svelte:self {item} level={level + 1} tree={heading.children} />
+                    <ToC {item} level={level + 1} tree={heading.children} />
                 </li>
             {/if}
         {/each}

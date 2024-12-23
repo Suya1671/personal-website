@@ -13,7 +13,7 @@
     "post_card_published": "Published {published} | Updated {updated}",
     "post_card_by": "By {author}",
     "post_card_draft": "UNPUBLISHED",
-    "landingpagedesc": "Hi, I'm TNTMan1671.",
+    "landingpagedesc": "Hi, I'm Suya1671",
     "skill_beginner": "Beginner",
     "skill_skilled": "Skilled",
     "skill_intermediate": "Intermediate",
@@ -27,5 +27,6 @@
     "footer_txt_2": "Hello welcome to the bottom of the page!",
     "footer_txt_3": "Why do websites even have footers anymore?",
     "footer_txt_4": "Footer disclaimer: We ran out of witty things to say.",
-    "header_links": "Links"
+    "header_links": "Links",
+    "profile_picture_caption": "My profile picture"
 }

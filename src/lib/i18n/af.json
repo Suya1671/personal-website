@@ -13,7 +13,7 @@
     "post_card_published": "Gepubliseer {published} | Opgedateer {updated}",
     "post_card_by": "Deur {author}",
     "post_card_draft": "ONGEPUBLISEER",
-    "landingpagedesc": "Hallo, ek is TNTMan1671,",
+    "landingpagedesc": "Hallo, ek is Suya1671,",
     "skill_beginner": "Beginner",
     "skill_skilled": "Vaardig",
     "skill_intermediate": "Tussentyds",
@@ -27,5 +27,6 @@
     "footer_txt_2": "Hallo welkom aan die onderkant van die webblad!",
     "footer_txt_3": "Hoekom het webwerwe selfs meer voetskrif?",
     "footer_txt_4": "Voetskrif disclaimer: Ons het geen spitsvondige dinge gehad om te sê nie.",
-    "header_links": "Skakels"
+    "header_links": "Skakels",
+    "profile_picture_caption": "My profielfoto"
 }

@@ -13,7 +13,7 @@ I _will_ shill it to you and you **cannot** stop me.
 
 On todays episode of UltraMusicShilling, I'll just
 do the prelude so you don't have to stay for _that_ long.
-Don't expect the same luxuries on the next couple of 
+Don't expect the same luxuries on the next couple of
 posts because then I'm going act-by-act.
 
 ## Menu Music: The fire is gone
@@ -26,6 +26,7 @@ The name is also downbeat for a game which has an all-caps bolded industrial loo
 (This is what is known in the industry as "foreshadowing").
 
 ## Layer 0: OVERTURE: MOUTH OF HELL
+
 Theres a small intro tutorial that you never
 play again and doesn't actually have music so
 moving on.
@@ -62,7 +63,7 @@ More break per core.
 <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=1991900720/size=large/bgcol=181a1b/linkcol=056cc4/tracklist=false/artwork=small/track=3123283150/transparent=true/" seamless />
 
 This is a remix of Into the fire, and sounds like what would be V1s theme song.
-It doesn't sound distinct enough that I have any other new thoughts compared to 
+It doesn't sound distinct enough that I have any other new thoughts compared to
 Into the fire.
 
 5 maurices / 7 cerberi
@@ -75,11 +76,12 @@ Wait this ain't no dog-
 
 I don't know how to describe this song other than _heavy._
 It's bass-only-filtered drum samples, the crunchy ear-piercing synth (if you can even call it a a synth),
-the dark grungy drone noises, it just sounds like it will beat you to death. 
+the dark grungy drone noises, it just sounds like it will beat you to death.
 
 2 three-headed-dogs / 3 YOUHAVEUNOITCOMESFREEWITHYOURXBOX-
 
 ## FREEDOM! (temporarily)
+
 And thats all the music from the prelude. Yeah, not much,
 but hey it's a taste for the chaos that is about to come.
 So prepare yourself to be kept in for longer because the
