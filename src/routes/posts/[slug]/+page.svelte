@@ -28,7 +28,7 @@
         throw new Error('Missing date or updated in frontmatter');
     }
 
-    let Content: null | Component = $state(null);
+    let Content: Component | null = $state(null);
     $effect(() => {
         import(data.frontmatter.path).then((comp) => {
             Content = comp.default;
@@ -82,15 +82,15 @@
     >
         <header class="mb:3x py:4x">
             <hr
-                class="$from:text-primary $to:secondary gradient(45deg,var(--from),var(--to)) h:1x border:none r:2x"
+                class="$from:text-primary $to:secondary border:none gradient(45deg,var(--from),var(--to)) h:1x r:2x"
             />
 
-            <h1 class="text:center text:8x" use:transition={`post-title-${data.slug}`}>
+            <h1 class="text:8x text:center" use:transition={`post-title-${data.slug}`}>
                 {data.frontmatter.title}
             </h1>
 
             <hr
-                class="$from:secondary $to:text-primary gradient(45deg,var(--from),var(--to)) h:1x border:none r:2x"
+                class="$from:secondary $to:text-primary border:none gradient(45deg,var(--from),var(--to)) h:1x r:2x"
             />
 
             <p class="my-0 fg:subtle opacity:.9" use:transition={`post-dates-${data.slug}`}>
@@ -106,7 +106,7 @@
 
         <p class="max-w:calc(100vw-2rem)">
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-             {#if Content}
+            {#if Content}
                 <Content />
             {:else}
                 {@html data.postHtml}

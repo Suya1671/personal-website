@@ -15,9 +15,9 @@
         return Math.random() * (max - min) + min;
     };
 
-    const prefersReducedMotion = () =>  {
+    const prefersReducedMotion = () => {
         if (!browser) throw new Error('prefersReducedMotion is only available in the browser');
-        return matchMedia('(prefers-reduced-motion: reduce)').matches
+        return matchMedia('(prefers-reduced-motion: reduce)').matches;
     };
 
     const animateWord = (word: string) => {
