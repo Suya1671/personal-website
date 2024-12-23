@@ -14,7 +14,7 @@
         LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
         nativeBuildInputs = with pkgs; [
           nil
-          nodejs
+          nodejs_22
           alejandra
           nodePackages.svelte-language-server
           nodePackages.pnpm

@@ -5,10 +5,10 @@ compatibility_date = "2023-01-22"
 compatibility_flags = ["nodejs_als"]
 
 [vars]
-NODE_VERSION = "20"
+NODE_VERSION = "22"
 
 [env.production]
 compatibility_date = "2023-01-22"
 
 [env.production.vars]
-NODE_VERSION = "20"
+NODE_VERSION = "22"
