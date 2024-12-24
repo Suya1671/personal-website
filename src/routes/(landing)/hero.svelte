@@ -108,7 +108,7 @@
 </script>
 
 <section
-    class="flex rel bg:base fg:base flex:auto@children flex:col flex:row@>1080px gap:6x justify-items:stretch m:6x mt:0x"
+    class="flex rel bg:base fg:base flex:col flex:row@>1080px gap:6x justify-items:stretch m:6x mt:0x"
     id="landing"
 >
     <section class="flex align-items:center bg:surface flex:0|0|600px flex:col px:4x r:4x">
@@ -229,9 +229,10 @@
 
     <section class="flex flex:row place-items:center text:5x">
         <p>
-            Hey! I'm Suyash, your probably-not-local computer nerd programming person. I like to
-            make questionably useful apps and websites, along with being a walking advertisement for
-            my current favourite thing (website, game, song, etc.).
+            Hey! I'm Suya, your probably-not-local computer nerd programming person. I like to make
+            (questionably useful) apps, websites, and random utilities. I also am known to be a
+            walking advertisement for my current favourite thing (be it a game, song, website,
+            etc.).
         </p>
         <!-- <enhanced:img
             alt="My desktop computer rice."

@@ -64,7 +64,7 @@ tell me exactly where my program can break because I forgot a null check or didn
         description: 'Reproducible builds and deployments.',
         experience: `
 I've been using NixOS since around 2022. I use it on my desktop, raspberry pi, and laptop.
-It's a great distro mainly because my whole system and user config [is in a git repo](https://github.com/Suyashtnt/commafiles).
+It's a great distro mainly because my whole system and user config [is in a git repo](https://github.com/Suya1671/commafiles).
 If something breaks, I can just git revert and rebuild the whole system. I can also just push from my laptop and get github actions
 to rebuild my system and send it back to my laptop. It's an extremely flexible and configurable OS at the cost of the most brutal
 learning code and unreadable errors known to mankind (I fear the day I ask a question and nobody knows what to do).
@@ -82,7 +82,7 @@ export const _projects: IProject[] = [
     {
         description: 'This very website!',
         name: 'Personal website',
-        url: 'https://github.com/suyashtnt/personal-website'
+        url: 'https://github.com/Suya1671/personal-website'
     },
     {
         description: 'Next-generation minecraft launcher',
@@ -92,7 +92,7 @@ export const _projects: IProject[] = [
     {
         description: 'My NixOS configuration',
         name: 'Commafiles',
-        url: 'https://github.com/suyashtnt/commafiles'
+        url: 'https://github.com/Suya1671/commafiles'
     }
 ];
 

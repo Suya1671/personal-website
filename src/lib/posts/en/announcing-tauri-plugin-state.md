@@ -1,7 +1,7 @@
 ---
 title: 'Announcing tauri-plugin-state'
 description: 'A quick announcement for a new plugin for Tauri that makes state management dead simple.'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2024-06-29 18:00'
 updated: '2024-06-29 18:00'
 published: true

@@ -1,7 +1,7 @@
 ---
 title: 'Go Go Gadget GoDaddy: wobbl.in is mine!'
 description: 'Short filler blog introducing my new domain'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2024-01-28 08:40'
 updated: '2024-01-28 08:40'
 published: true
@@ -20,4 +20,3 @@ There were a few contenders:
 - wobbl.in
 
 One of them is far funnier than the others, and thus, welcome <https://wobbl.in>!
-

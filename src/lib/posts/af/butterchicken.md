@@ -1,7 +1,7 @@
 ---
 title: 'Botterhoender'
 description: 'Die ongelooflike Noord-Indiese gereg.'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2023-10-29 18:00'
 updated: '2023-10-29 18:00'
 published: true

@@ -1,15 +1,15 @@
 ---
 title: 'The 2023 quotebook: top quotes of the year'
 description: 'Some of the quotes of all time'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2024-01-1 19:30'
 updated: '2024-01-1 19:30'
 published: true
 ---
 
-So, in the middle of this year I started "The quotebook", 
-A file in my Obsidian vault containing a bunch of quotes from my friends IRL 
-and a bunch of people online (With permission ofc). 
+So, in the middle of this year I started "The quotebook",
+A file in my Obsidian vault containing a bunch of quotes from my friends IRL
+and a bunch of people online (With permission ofc).
 It's a continuation of something my friends started after one of them said this now legendary line:
 
 > “It's a goat, goats are dinosaurs”
@@ -17,8 +17,8 @@ It's a continuation of something my friends started after one of them said this 
 
 Now there are about 108 quotes (and thats only IRL!). Here are some of my favourites from this year (All of these were said in-person. That is the only context you are getting for most of em).
 
-> - [0] What? I have to "draw a cat that represents me"? 
-> - [1] Wow, that's crazy! I have to do the same thing! 
+> - [0] What? I have to "draw a cat that represents me"?
+> - [1] Wow, that's crazy! I have to do the same thing!
 > - [2] Wow that's crazy! I have to do the same thing!
 >
 > — <cite>23 May 2023</cite>
@@ -45,7 +45,7 @@ Now there are about 108 quotes (and thats only IRL!). Here are some of my favour
 
 > - [0] Somebody should've sculpted a child being sold on the dark web.
 > - [1] Aww that would be cute!
-> 
+>
 > — <cite>28 Aug 2023 - 16:21</cite>
 
 > “I had SO much fun getting hit in the head!”

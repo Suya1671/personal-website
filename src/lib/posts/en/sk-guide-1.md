@@ -1,7 +1,7 @@
 ---
 title: 'The Svelte/Kit tutorial: Part 1 | What is Svelte anyways?'
 description: 'Welcome to your local wobblers guide to Svelte 5 (And SvelteKit). This is an introduction both frameworks.'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2024-06-26 20:40'
 updated: '2024-06-26 20:40'
 published: false
@@ -90,7 +90,7 @@ All we need to do is use Svelte's name for `reactive`: `$state`
 
 Svelte is a compiler that turns this code into regular Javascript.
 It's extremely optimised, nearing hand-made JS speeds.
-This is why Svelte is so great: Easy development while not being so costly 
+This is why Svelte is so great: Easy development while not being so costly
 in terms of performance.
 
 ## Now what about SvelteKit?
@@ -126,7 +126,7 @@ part of Svelte as a whole.
 `$state` is fairly simple: it tells Svelte that the variable is _reactive state._
 
 > _"What the hell does that even mean?"_
- 
+
 The state of a component is the variables the component depends on to function properly.
 Take this basic example:
 
@@ -152,12 +152,9 @@ shown you how it works earlier: just wrap it in the `$state` _rune_.
 
 > _"Rune?"_
 
-Runes are Svelte 5 way of describing reactivity. 
-These are not just regular functions, but rather a 
+Runes are Svelte 5 way of describing reactivity.
+These are not just regular functions, but rather a
 marker for the Svelte compiler that says the variable
 is reactive and can change.
 
 Try using one yourself!
-
-
-

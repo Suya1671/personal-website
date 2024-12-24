@@ -1,7 +1,7 @@
 ---
 title: 'VueJS: Great ideas, good execution, outshone by the competition'
 description: 'A look on Vue.JS.'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2023-05-23 22:06'
 updated: '2023-07-03 22:06'
 published: true

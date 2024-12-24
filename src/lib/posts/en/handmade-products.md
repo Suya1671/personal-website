@@ -1,7 +1,7 @@
 ---
 title: 'Handmade products'
 description: 'Short blog for a school project. Read in Afrikaans for the true experience™️'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2023-10-29 15:40'
 updated: '2023-10-29 15:40'
 published: true

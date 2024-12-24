@@ -1,7 +1,7 @@
 ---
 title: 'Handgemaakte produkte'
 description: "Wat is hulle, en moet jy 'n paar kry?"
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2023-10-29 15:40'
 updated: '2023-10-29 19:22'
 published: true

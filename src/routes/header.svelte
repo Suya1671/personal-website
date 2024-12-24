@@ -25,7 +25,7 @@
 
 {#snippet dropdownSection(title: string, Icon: Component, content: Snippet)}
     <div
-        class="flex rel bg:surface fg:surface flex:col@<2xs mb:2x:not(:last)@<2xs px:4x py:2x r:5x text:left"
+        class="flex rel bg:surface fg:surface flex:col@<xs mb:2x:not(:last)@<xs px:4x py:2x r:5x text:left"
     >
         <span>
             <Icon class="inline vertical:middle" />
@@ -37,8 +37,8 @@
 {/snippet}
 
 {#snippet links()}
-    <div class="bg:surface fg:surface p:2x@2xs r:6x text:left">
-        <ul class={'r:6x transition:all|300ms my:0 flex flex:col@<2xs pl:0 pr:2x text:5x'}>
+    <div class="bg:surface fg:surface p:2x@xs r:6x text:left">
+        <ul class={'r:6x transition:all|300ms my:0 flex flex:col@<xs pl:0 pr:2x text:5x'}>
             <li class="list-style:none">
                 <a class="flex align-items:center fg:base fg:base:visited flex:row" href="/">
                     <Arrow />
@@ -57,7 +57,7 @@
 
 {#snippet langs()}
     <ul
-        class={'abs@2xs r:6x bg:surface bg:overlay@2xs my:0 flex top:calc(100%+0.25rem) flex:col p:2x p:1x@2xs pr:3x@2xs  text:5x right:0'}
+        class={'abs@xs r:6x bg:surface bg:overlay@xs my:0 flex top:calc(100%+0.25rem) flex:col p:2x p:1x@xs pr:3x@xs  text:5x right:0'}
     >
         {#each availableLanguageTags.filter((lang) => lang !== languageTag()) as lang}
             <li class="list-style:none">
@@ -98,13 +98,13 @@
         </h1>
     </section>
 
-    <details class="hidden@2xs">
+    <details class="hidden@xs">
         <summary class="bg:overlay h:8x list-style:none p:2x r:6x">
             <Menu aria-label="Dropdown menu" class="size:8x" />
         </summary>
 
         <div
-            class={'w:80% abs left:50% top:calc(100%+1rem) flex:row transform:top rotate(90,0) r:6x bg:text-primary@2xs bg:overlay p:2x text:6x transition:all|300ms translate(-50%,0) gap:4x'}
+            class={'w:80% abs left:50% top:calc(100%+1rem) flex:row transform:top rotate(90,0) r:6x bg:text-primary@xs bg:overlay p:2x text:6x transition:all|300ms translate(-50%,0) gap:4x'}
         >
             {@render dropdownSection(m.header_links(), Link, links)}
             {@render dropdownSection(translateLanguage(languageTag()), Language, langs)}
@@ -112,11 +112,11 @@
     </details>
 
     <div
-        class={'flex:row r:6x bg:primary bg:text-primary@dark text:center text:6x hidden@<2xs flex gap:4x p:2x text:5x fg:black'}
+        class={'flex:row r:6x bg:primary bg:text-primary@dark text:center text:6x hidden@<xs flex gap:4x p:2x text:5x fg:black'}
     >
         {@render links()}
         <details
-            class="flex rel bg:surface fg:surface flex:col@<2xs p:1x pl:2x place-items:center r:6x"
+            class="flex rel bg:surface fg:surface flex:col@<xs p:1x pl:2x place-items:center r:6x"
         >
             <summary
                 class="flex align-items:center bg:none border:none flex:row gap:1x h:full text:5x"

@@ -19,6 +19,8 @@
     }
     const { data }: Props = $props();
 
+    console.log(data.postHtml);
+
     if (
         !data.frontmatter.date ||
         !data.frontmatter.updated ||
@@ -122,7 +124,7 @@
             loading="lazy"
             mapping="og:title"
             reactionsEnabled="1"
-            repo="Suyashtnt/personal-website"
+            repo="Suya1671/personal-website"
             repoId="R_kgDOI0N8xg"
             strict="0"
         />

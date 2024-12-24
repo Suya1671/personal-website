@@ -1,7 +1,7 @@
 ---
 title: 'My friend and I went to a waterpark. Turns out 20kg affects physics.'
 description: 'Just sharing some funny experiences when a friend and I went to a waterpark. Also contains a basic physics lesson!'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2023-11-31 20:26'
 updated: '2023-09-23 20:26'
 published: true

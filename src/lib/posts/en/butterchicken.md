@@ -1,7 +1,7 @@
 ---
 title: 'Butter Chicken'
 description: 'The incredible Northern-Indian dish. Read in Afrikaans for the true experience™️'
-author: 'Suyashtnt'
+author: 'Suya'
 date: '2023-10-29 18:00'
 updated: '2023-10-29 18:00'
 published: true
