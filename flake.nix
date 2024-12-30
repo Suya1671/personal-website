@@ -10,8 +10,7 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      devShells.default = pkgs.mkShell rec {
-        LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+      devShells.default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
           nil
           nodejs_22
