@@ -1,13 +1,18 @@
 import type { Handle } from '@sveltejs/kit';
 
-import { i18n } from '$lib/i18n';
+import { paraglideMiddleware } from '$lib/paraglide/server';
 import { render } from '@master/css-server';
-import { sequence } from '@sveltejs/kit/hooks';
 
 import config from '../master.css';
 
-export const handle: Handle = sequence(i18n.handle(), ({ event, resolve }) =>
-    resolve(event, {
-        transformPageChunk: ({ html }) => render(html, config).html
-    })
-);
+const paraglideHandle: Handle = ({ event, resolve }) =>
+    paraglideMiddleware(event.request, ({ locale, request: localizedRequest }) => {
+        event.request = localizedRequest;
+        return resolve(event, {
+            transformPageChunk: ({ html }) => {
+                return render(html.replace('%lang%', locale), config).html;
+            }
+        });
+    });
+
+export const handle: Handle = paraglideHandle;

@@ -7,7 +7,7 @@ import type { IProject } from './project.svelte';
 import type { ISkill } from './skill.svelte';
 
 export const prerender = false;
-import { languageTag } from '$i18n/runtime';
+import { getLocale } from '$lib/paraglide/runtime';
 import { allPosts } from '$lib/posts';
 
 import type { PageServerLoad } from './$types';
@@ -98,7 +98,7 @@ export const _projects: IProject[] = [
 
 export const load: PageServerLoad = async ({ depends }) => {
     depends('paraglide:lang');
-    const language = languageTag();
+    const language = getLocale();
 
     const posts = (await Promise.all(Object.values(allPosts[language]))).map(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

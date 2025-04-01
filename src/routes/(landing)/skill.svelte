@@ -1,6 +1,8 @@
 <script module lang="ts">
     import type { Component } from 'svelte';
 
+    import { localizeHref } from '$lib/paraglide/runtime';
+
     export interface ISkill {
         /**
          * Very short description or tagline of the skill
@@ -47,7 +49,7 @@
 <a
     class="flex align-items:center gap:4x outline:2 px:4x py:2x r:4x text-decoration:none text:overlay text:overlay:visited {outline}"
     data-sveltekit-noscroll
-    href={`/?skill=${skill.id}`}
+    href={localizeHref(`/?skill=${skill.id}`)}
 >
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html skill.icon}

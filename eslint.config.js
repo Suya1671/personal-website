@@ -21,7 +21,7 @@ const defaultRules = {
  */
 export default [
     {
-        ignores: ['.svelte-kit/**/*', 'node_modules/**/*']
+        ignores: ['.svelte-kit/**/*', 'node_modules/**/*', 'src/lib/paraglide/**/*']
     },
     js.configs.recommended,
     css,

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import * as m from '$i18n/messages';
     import PageHead from '$lib/components/page-head.svelte';
+    import * as m from '$lib/paraglide/messages';
     import Posts from '$lib/posts/posts.svelte';
 
     import type { PageData } from './$types';

@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { i18n } from '$lib/i18n';
-    import { ParaglideJS } from '@inlang/paraglide-sveltekit';
     import { type CSSRuntimeProvider as CSSProviderType, Fragment } from '@master/css.svelte';
     import { onMount, type Snippet } from 'svelte';
     import { setupViewTransition } from 'sveltekit-view-transition';
@@ -28,13 +26,11 @@
 </script>
 
 <CSSRuntimeProvider config={import('../../master.css')}>
-    <ParaglideJS {i18n}>
-        <Header />
-        <main class="bg:base fg:base pt:4x">
-            {@render children()}
-        </main>
-        <Footer footerText={data.footerText} />
-    </ParaglideJS>
+    <Header />
+    <main class="bg:base fg:base pt:4x">
+        {@render children()}
+    </main>
+    <Footer footerText={data.footerText} />
 </CSSRuntimeProvider>
 
 <style></style>

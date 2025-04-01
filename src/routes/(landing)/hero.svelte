@@ -1,6 +1,6 @@
 <script lang="ts">
     import { browser } from '$app/environment';
-    import * as m from '$i18n/messages';
+    import * as m from '$lib/paraglide/messages';
     import { easeEmphasized } from 'm3-svelte';
     import { animate, type AnimationSequence } from 'motion';
     import { onMount } from 'svelte';

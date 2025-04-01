@@ -1,4 +1,4 @@
-import type { AvailableLanguageTag } from '$i18n/runtime';
+import type { Locale } from '$lib/paraglide/runtime';
 
 import { allPosts } from '$lib/posts';
 import { v5 as uuid } from 'uuid';
@@ -42,7 +42,7 @@ export const GET: RequestHandler = async () => {
     return new Response(body, options);
 };
 
-const _render = (posts: (App.BlogPost & { language: AvailableLanguageTag })[]) =>
+const _render = (posts: (App.BlogPost & { language: Locale })[]) =>
     `
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">

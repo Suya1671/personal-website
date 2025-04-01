@@ -1,4 +1,4 @@
-import { paraglide } from '@inlang/paraglide-sveltekit/vite';
+import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import browserslist from 'browserslist';
@@ -23,11 +23,14 @@ export default defineConfig({
     },
     plugins: [
         enhancedImages(),
-        paraglide({
-            outdir: './src/paraglide',
-            project: './project.inlang'
-        }),
         sveltekit(),
+        paraglideVitePlugin({
+            // doesn't work on CSR yet. Neat feature though!
+            // experimentalMiddlewareLocaleSplitting: true,
+            outdir: './src/lib/paraglide',
+            project: './project.inlang',
+            strategy: ['url', 'cookie', 'preferredLanguage', 'baseLocale']
+        }),
         Icons({
             autoInstall: true,
             compiler: 'svelte'

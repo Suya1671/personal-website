@@ -1,6 +1,6 @@
 <script lang="ts">
-    import * as m from '$i18n/messages';
-    import { languageTag } from '$i18n/runtime';
+    import * as m from '$lib/paraglide/messages';
+    import { getLocale, localizeHref } from '$lib/paraglide/runtime';
     import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { PageData } from '../../routes/(landing)/$types';
@@ -10,18 +10,17 @@
     }
     const { posts }: Props = $props();
 
-    const getLocaleFromLanguageTag = () => {
-        switch (languageTag()) {
+    const locale = $derived.by(() => {
+        switch (getLocale()) {
             case 'af':
                 return 'af-za';
             case 'en':
                 return 'en-uk';
             default:
-                throw new Error(`Unknown language tag: ${languageTag()}`);
+                throw new Error(`Unknown locale: ${getLocale()}`);
         }
-    };
+    });
 
-    const locale = $derived(getLocaleFromLanguageTag());
     const dateFormatter = $derived(
         new Intl.DateTimeFormat(locale, {
             day: '2-digit',
@@ -38,7 +37,7 @@
         <li class="flex:1|1|330px m:2x mb:8x transform:scale(1.05):hover transition:all|300ms">
             <a
                 class="group fg:surface fg:surface:visited text-decoration:none"
-                href="/posts/{post.slug}"
+                href={localizeHref(`/posts/${post.slug}`)}
             >
                 <article
                     class="flex bg:surface bg:overlay:hover flex:col h:full px:4x py:3x r:6x transition:all|300ms"
@@ -46,7 +45,7 @@
                 >
                     <header>
                         <h1
-                            class="casl:0.8 fg:primary mb:1x text:underline:hover"
+                            class="casl:0.8 fg:primary line-height:1.3em mb:1x text:7x text:underline:hover"
                             use:transition={`post-title-${post.slug}`}
                         >
                             {post.title}

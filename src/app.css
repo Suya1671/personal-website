@@ -215,6 +215,10 @@ h6 {
     isolation: isolate;
 }
 
+:where(h1) {
+    font-size: 2em;
+}
+
 /* * {
     outline: 1px solid purple;
 } */

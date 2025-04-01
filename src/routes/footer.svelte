@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { localizeHref } from '$lib/paraglide/runtime';
+
     const { footerText }: { footerText: string } = $props();
 </script>
 
@@ -16,7 +18,7 @@
             CC BY-NC 4.0
         </a>
         <br class="display:none@>sm" />
-        <a href="/licenses">unless stated otherwise</a>
+        <a href={localizeHref('/licenses')}>unless stated otherwise</a>
     </p>
     <p>{footerText}</p>
 </footer>

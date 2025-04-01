@@ -1,24 +1,23 @@
 <script lang="ts">
     import type { Component, Snippet } from 'svelte';
 
-    import { page } from '$app/stores';
-    import * as m from '$i18n/messages';
-    import { type AvailableLanguageTag, availableLanguageTags, languageTag } from '$i18n/runtime';
-    import { i18n } from '$lib/i18n';
+    import { page } from '$app/state';
+    import * as m from '$lib/paraglide/messages';
+    import { getLocale, type Locale, locales, localizeHref } from '$lib/paraglide/runtime';
     import DropDown from '~icons/material-symbols/arrow-drop-down';
     import Language from '~icons/material-symbols/language';
     import Menu from '~icons/material-symbols/menu-rounded';
     import Link from '~icons/material-symbols/open-in-new';
     import Arrow from '~icons/material-symbols/play-arrow-rounded';
 
-    const translateLanguage = (language: AvailableLanguageTag) => {
-        switch (language) {
+    const translateLocale = (locale: Locale) => {
+        switch (locale) {
             case 'af':
                 return m.lang_af();
             case 'en':
                 return m.lang_en();
             default:
-                return language;
+                return locale;
         }
     };
 </script>
@@ -40,13 +39,19 @@
     <div class="bg:surface fg:surface p:2x@xs r:6x text:left">
         <ul class={'r:6x transition:all|300ms my:0 flex flex:col@<xs pl:0 pr:2x text:5x'}>
             <li class="list-style:none">
-                <a class="flex align-items:center fg:base fg:base:visited flex:row" href="/">
+                <a
+                    class="flex align-items:center fg:base fg:base:visited flex:row"
+                    href={localizeHref('/')}
+                >
                     <Arrow />
                     {m.header_home()}
                 </a>
             </li>
             <li class="list-style:none">
-                <a class="flex align-items:center fg:base fg:base:visited flex:row" href="/posts">
+                <a
+                    class="flex align-items:center fg:base fg:base:visited flex:row"
+                    href={localizeHref('/posts')}
+                >
                     <Arrow />
                     {m.header_posts()}
                 </a>
@@ -58,17 +63,18 @@
 {#snippet langs()}
     <ul
         class={'abs@xs r:6x bg:surface bg:overlay@xs my:0 flex top:calc(100%+0.25rem) flex:col p:2x p:1x@xs pr:3x@xs  text:5x right:0'}
+        data-sveltekit-reload
     >
-        {#each availableLanguageTags.filter((lang) => lang !== languageTag()) as lang}
+        {#each locales.filter((locale) => locale !== getLocale()) as locale}
             <li class="list-style:none">
                 <a
-                    aria-current={lang === languageTag() ? 'page' : undefined}
+                    aria-current={locale === getLocale() ? 'page' : undefined}
                     class="flex align-items:center flex:row"
-                    href={i18n.route($page.url.pathname)}
-                    hreflang={lang}
+                    href={localizeHref(page.url.pathname, { locale })}
+                    hreflang={locale}
                 >
                     <Arrow />
-                    {translateLanguage(lang)}
+                    {translateLocale(locale)}
                 </a>
             </li>
         {/each}
@@ -81,7 +87,7 @@
     <section class="flex align-items:center gap:2x justify-content:space-between">
         <a
             class="flex place-items:center"
-            href="/posts/the-wobbler"
+            href={localizeHref('/posts/the-wobbler', { locale: 'en' })}
             aria-label={m.profile_picture_caption()}
         >
             <enhanced:img
@@ -94,7 +100,7 @@
         </a>
 
         <h1 class="my:0 text:6x">
-            <a class="fg:base fg:base:visited" href="/"> Suya's Chaos Portal </a>
+            <a class="fg:base fg:base:visited" href={localizeHref('/')}> Suya's Chaos Portal </a>
         </h1>
     </section>
 
@@ -107,7 +113,7 @@
             class={'w:80% abs left:50% top:calc(100%+1rem) flex:row transform:top rotate(90,0) r:6x bg:text-primary@xs bg:overlay p:2x text:6x transition:all|300ms translate(-50%,0) gap:4x'}
         >
             {@render dropdownSection(m.header_links(), Link, links)}
-            {@render dropdownSection(translateLanguage(languageTag()), Language, langs)}
+            {@render dropdownSection(translateLocale(getLocale()), Language, langs)}
         </div>
     </details>
 
@@ -122,7 +128,7 @@
                 class="flex align-items:center bg:none border:none flex:row gap:1x h:full text:5x"
             >
                 <Language />
-                {translateLanguage(languageTag())}
+                {translateLocale(getLocale())}
                 <DropDown />
             </summary>
             {@render langs()}

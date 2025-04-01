@@ -1,4 +1,4 @@
-import type { AvailableLanguageTag } from '$i18n/runtime';
+import type { Locale } from '$lib/paraglide/runtime';
 
 import { slugFromPath } from '$lib/helpers/slug-from-path';
 
@@ -29,10 +29,7 @@ const afrikaansPosts = Object.fromEntries(
     )
 );
 
-export const allPosts: Record<
-    AvailableLanguageTag,
-    Record<string, Promise<App.BlogPost & { path: string }>>
-> = {
+export const allPosts: Record<Locale, Record<string, Promise<App.BlogPost & { path: string }>>> = {
     af: afrikaansPosts,
     en: englishPosts
 };

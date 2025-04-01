@@ -1,4 +1,4 @@
-import { languageTag } from '$i18n/runtime';
+import { getLocale } from '$lib/paraglide/runtime';
 import { allPosts } from '$lib/posts';
 import { error } from '@sveltejs/kit';
 import { render } from 'svelte/server';
@@ -6,7 +6,7 @@ import { render } from 'svelte/server';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
-    const posts = allPosts[languageTag()];
+    const posts = allPosts[getLocale()];
     const { component, ...frontmatter } =
         (await posts[params.slug]) ?? error(404, `Cannot find post with slug '${params.slug}'`);
 

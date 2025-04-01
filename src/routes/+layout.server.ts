@@ -1,4 +1,4 @@
-import * as m from '$i18n/messages';
+import * as m from '$lib/paraglide/messages';
 import { error } from '@sveltejs/kit';
 
 import type { LayoutServerLoad } from './$types';

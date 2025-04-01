@@ -1,7 +1,7 @@
 <script lang="ts">
-    import * as m from '$i18n/messages';
-    import { languageTag } from '$i18n/runtime';
     import PageHead from '$lib/components/page-head.svelte';
+    import * as m from '$lib/paraglide/messages';
+    import { getLocale } from '$lib/paraglide/runtime';
     import Giscus from '@giscus/svelte';
     import '@portaljs/remark-callouts/styles.css';
     import { createTableOfContents } from '@melt-ui/svelte';
@@ -18,8 +18,6 @@
         data: PageData;
     }
     const { data }: Props = $props();
-
-    console.log(data.postHtml);
 
     if (
         !data.frontmatter.date ||
@@ -120,7 +118,7 @@
             categoryId="DIC_kwDOI0N8xs4Caho4"
             emitMetadata="1"
             inputPosition="top"
-            lang={languageTag()}
+            lang={getLocale()}
             loading="lazy"
             mapping="og:title"
             reactionsEnabled="1"
