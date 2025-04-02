@@ -57,7 +57,7 @@
 
     <!-- chips -->
     <section class="flex gap:2x">
-        {#snippet chipContent(content: string)}
+        {#snippet chipContent(content)}
             <p class="fg:black my:0 text:5x">
                 {content}
             </p>

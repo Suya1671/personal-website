@@ -1,7 +1,7 @@
 <script lang="ts">
     import { browser } from '$app/environment';
+    import { easeEmphasized } from '$lib/helpers/easing';
     import * as m from '$lib/paraglide/messages';
-    import { easeEmphasized } from 'm3-svelte';
     import { animate, type AnimationSequence } from 'motion';
     import { onMount } from 'svelte';
     import Discord from '~icons/ic/baseline-discord';
@@ -154,7 +154,7 @@
             <ul
                 class={'my:0 gap:6x@<2xs flex flex:col@<2xs align-items:center justify-content:space-around pl:0 text:6x list-style:none@<2xs w:full'}
             >
-                {#snippet tag(name: string, content: string, href?: string)}
+                {#snippet tag(name, content, href)}
                     <li class="flex flex-grow:1 justify-content:center list-style:none w:full">
                         <h2
                             class={name}

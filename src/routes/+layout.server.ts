@@ -3,6 +3,10 @@ import { error } from '@sveltejs/kit';
 
 import type { LayoutServerLoad } from './$types';
 
+// sveltekit islands manually injects the js
+export const prerender = true;
+export const csr = false;
+
 export const load = (async ({ depends }) => {
     depends('paraglide:lang');
 

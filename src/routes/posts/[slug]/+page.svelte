@@ -6,9 +6,11 @@
     import '@portaljs/remark-callouts/styles.css';
     import { createTableOfContents } from '@melt-ui/svelte';
     import { type Component } from 'svelte';
-    import { setupViewTransition } from 'sveltekit-view-transition';
+    import { Island } from 'sveltekit-islands';
 
     import './giscus.css';
+
+    import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { PageData } from './$types';
 
@@ -27,13 +29,6 @@
     ) {
         throw new Error('Missing date or updated in frontmatter');
     }
-
-    let Content: Component | null = $state(null);
-    $effect(() => {
-        import(data.frontmatter.path).then((comp) => {
-            Content = comp.default;
-        });
-    });
 
     // Svelte's template doesn't recognize the type narrowing done above
     const description = data.frontmatter.description;
@@ -104,14 +99,14 @@
             </p>
         </header>
 
-        <p class="max-w:calc(100vw-2rem)">
-            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-            {#if Content}
-                <Content />
+        <div class="max-w:calc(100vw-2rem)">
+            <!-- This ensures the JS for the component is only loaded if the post requires/asks for it -->
+            {#if data.frontmatter.useJS}
+                <Island component={data.component}></Island>
             {:else}
-                {@html data.postHtml}
+                <data.component></data.component>
             {/if}
-        </p>
+        </div>
 
         <Giscus
             category="Announcements"

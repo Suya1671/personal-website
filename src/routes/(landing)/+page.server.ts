@@ -1,16 +1,16 @@
+import { getLocale } from '$lib/paraglide/runtime';
+import { allPosts } from '$lib/posts';
 import Nix from '~icons/devicon/nixos?raw&width=2.5em&height=2.5em';
 import Rust from '~icons/logos/rust?raw&width=2.5em&height=2.5em';
 import Svelte from '~icons/logos/svelte-icon?raw&width=2.5em&height=2.5em';
 import Vue from '~icons/logos/vue?raw&width=2.5em&height=2.5em';
 
+import type { PageServerLoad } from './$types';
 import type { IProject } from './project.svelte';
 import type { ISkill } from './skill.svelte';
 
-export const prerender = false;
-import { getLocale } from '$lib/paraglide/runtime';
-import { allPosts } from '$lib/posts';
-
-import type { PageServerLoad } from './$types';
+export const prerender = true;
+export const csr = false;
 
 export const _skills: ISkill[] = [
     {
@@ -100,9 +100,9 @@ export const load: PageServerLoad = async ({ depends }) => {
     depends('paraglide:lang');
     const language = getLocale();
 
-    const posts = (await Promise.all(Object.values(allPosts[language]))).map(
+    const posts = (await Promise.all(Object.values(allPosts[language]).map((post) => post()))).map(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ({ component: _, ...rest }) => rest
+        ({ component: _, ...metadata }) => metadata
     );
 
     const publishedPosts = posts.filter((post) => post.published);

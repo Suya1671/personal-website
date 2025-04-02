@@ -22,7 +22,7 @@
     };
 </script>
 
-{#snippet dropdownSection(title: string, Icon: Component, content: Snippet)}
+{#snippet dropdownSection(title, Icon, content)}
     <div
         class="flex rel bg:surface fg:surface flex:col@<xs mb:2x:not(:last)@<xs px:4x py:2x r:5x text:left"
     >
@@ -87,7 +87,7 @@
     <section class="flex align-items:center gap:2x justify-content:space-between">
         <a
             class="flex place-items:center"
-            href={localizeHref('/posts/the-wobbler', { locale: 'en' })}
+            href="/posts/the-wobbler"
             aria-label={m.profile_picture_caption()}
         >
             <enhanced:img

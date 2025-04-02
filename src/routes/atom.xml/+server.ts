@@ -19,7 +19,7 @@ function _objectEntries<T extends Record<PropertyKey, unknown>, K extends keyof 
 export const GET: RequestHandler = async () => {
     const posts = await Promise.all(
         _objectEntries(allPosts).map(async ([language, postPromises]) => {
-            const posts = await Promise.all(Object.values(postPromises));
+            const posts = await Promise.all(Object.values(postPromises).map((post) => post()));
             return posts.map((post) => ({
                 ...post,
                 language

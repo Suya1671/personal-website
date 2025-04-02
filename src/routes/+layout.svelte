@@ -1,6 +1,5 @@
 <script lang="ts">
-    import { type CSSRuntimeProvider as CSSProviderType, Fragment } from '@master/css.svelte';
-    import { onMount, type Snippet } from 'svelte';
+    import { type Snippet } from 'svelte';
     import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { LayoutData } from './$types';
@@ -16,21 +15,12 @@
         data: LayoutData;
     }
     const { children, data }: Props = $props();
-
-    let CSSRuntimeProvider: typeof CSSProviderType = $state(Fragment);
-
-    onMount(async () => {
-        const { CSSRuntimeProvider: runtime } = await import('@master/css.svelte');
-        CSSRuntimeProvider = runtime;
-    });
 </script>
 
-<CSSRuntimeProvider config={import('../../master.css')}>
-    <Header />
-    <main class="bg:base fg:base pt:4x">
-        {@render children()}
-    </main>
-    <Footer footerText={data.footerText} />
-</CSSRuntimeProvider>
+<Header />
+<main class="bg:base fg:base pt:4x">
+    {@render children()}
+</main>
+<Footer footerText={data.footerText} />
 
 <style></style>

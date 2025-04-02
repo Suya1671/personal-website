@@ -9,13 +9,19 @@ declare global {
     namespace App {
         type BlogPost = {
             author: string;
-            component: typeof import('svelte').SvelteComponent;
+            component: import('svelte').Component;
             date: string;
             description: string;
             published: boolean;
             slug: string;
             title: string;
             updated: string;
+            /**
+             * Whether or not this post can use JS to enhance it
+             *
+             * This actually controls whether or not the client loads the JS for this component
+             */
+            useJS?: boolean;
         };
         // interface PageData {}
         // interface Platform {}

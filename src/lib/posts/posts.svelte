@@ -10,24 +10,22 @@
     }
     const { posts }: Props = $props();
 
-    const locale = $derived.by(() => {
+    const locale: Intl.LocalesArgument = (() => {
         switch (getLocale()) {
             case 'af':
                 return 'af-za';
             case 'en':
-                return 'en-uk';
+                return 'en-za';
             default:
                 throw new Error(`Unknown locale: ${getLocale()}`);
         }
-    });
+    })();
 
-    const dateFormatter = $derived(
-        new Intl.DateTimeFormat(locale, {
-            day: '2-digit',
-            month: 'short',
-            year: 'numeric'
-        })
-    );
+    const dateFormatter = new Intl.DateTimeFormat(locale, {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    });
 
     const { transition } = setupViewTransition();
 </script>
@@ -52,7 +50,7 @@
                         </h1>
 
                         <p
-                            class="opacity:.7"
+                            class="opacity:.7 text:base"
                             role="doc-subtitle"
                             use:transition={`post-dates-${post.slug}`}
                         >
@@ -63,7 +61,7 @@
                         </p>
                     </header>
 
-                    <footer class="my:2x">
+                    <footer class="my:2x text:base">
                         <p>{post.description}</p>
                     </footer>
                 </article>

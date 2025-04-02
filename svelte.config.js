@@ -1,8 +1,8 @@
-import { preprocessMeltUI } from '@melt-ui/pp';
+import { preprocessMeltUI, sequence } from '@melt-ui/pp';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
-import sequence from 'svelte-sequential-preprocessor';
+import { islandsPreprocessor } from 'sveltekit-islands/preprocessor';
 
 import mdsvexConfig from './mdsvex.config.js';
 
@@ -15,6 +15,8 @@ const config = {
             $lib: './src/lib'
         },
         prerender: {
+            // TODO: handle localisation redirects
+            handleHttpError: 'warn',
             handleMissingId: 'warn'
         },
         typescript: {
@@ -28,6 +30,11 @@ const config = {
             }
         }
     },
-    preprocess: sequence([vitePreprocess(), mdsvex(mdsvexConfig), preprocessMeltUI()])
+    preprocess: sequence([
+        vitePreprocess({ script: true }),
+        mdsvex(mdsvexConfig),
+        islandsPreprocessor(),
+        preprocessMeltUI()
+    ])
 };
 export default config;

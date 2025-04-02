@@ -3,6 +3,7 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import browserslist from 'browserslist';
 import { browserslistToTargets } from 'lightningcss';
+import { islandsPlugin } from 'sveltekit-islands/plugin';
 import Icons from 'unplugin-icons/vite';
 import { defineConfig } from 'vite';
 
@@ -24,9 +25,10 @@ export default defineConfig({
     plugins: [
         enhancedImages(),
         sveltekit(),
+        islandsPlugin(),
         paraglideVitePlugin({
-            // doesn't work on CSR yet. Neat feature though!
-            // experimentalMiddlewareLocaleSplitting: true,
+            // note: doesn't work on CSR yet
+            experimentalMiddlewareLocaleSplitting: true,
             outdir: './src/lib/paraglide',
             project: './project.inlang',
             strategy: ['url', 'cookie', 'preferredLanguage', 'baseLocale']

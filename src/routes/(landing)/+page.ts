@@ -4,7 +4,9 @@ import { marked } from 'marked'; // Import the marked lib
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = ({ data, url }) => {
-    const wantedSkill = url.searchParams.get('skill') ?? 'Svelte';
+    // TODO: redo this so we don't need searchParams
+    // const wantedSkill = url.searchParams.get('skill') ?? 'Svelte';
+    const wantedSkill = 'Svelte';
 
     const selectedSkill = data.skills.find(
         (skill) => skill.id.toLowerCase() === wantedSkill.toLowerCase()

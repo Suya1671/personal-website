@@ -30,7 +30,6 @@
         "@types/culori": "^2.1.0",
         "@types/eslint": "^9.6.1",
         "@types/eslint-config-prettier": "^6.11.3",
-        "@types/eslint__js": "^9.14.0",
         "@types/remark-abbr": "^1.4.4",
         "@types/uuid": "^10.0.0",
         "@typescript-eslint/eslint-plugin": "^8.29.0",
@@ -56,7 +55,7 @@
         "svelte-check": "^4.1.5",
         "svelte-eslint-parser": "^1.1.1",
         "svelte-preprocess": "^6.0.1",
-        "svelte-sequential-preprocessor": "^2.0.1",
+        "sveltekit-islands": "2.0.0-beta.4",
         "sveltekit-view-transition": "^0.5.3",
         "tslib": "^2.8.1",
         "typescript": "^5.8.2",
@@ -77,7 +76,6 @@
         "@master/css.svelte": "2.0.0-rc.60",
         "animejs": "^3.2.2",
         "atropos": "^2.0.2",
-        "m3-svelte": "^3.4.10",
         "motion": "^12.6.3"
     }
 }
