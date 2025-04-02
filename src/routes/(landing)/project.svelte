@@ -13,21 +13,21 @@
     const { project }: Props = $props();
 </script>
 
-<a class="group box-border h-full rounded-2xl decoration-none" href={project.url}>
+<a class="box-border decoration-none group h-full rounded-2xl" href={project.url}>
     <div
-        class="dark:bg-dark-mantle box-border h-full flex-col items-center justify-between gap-2 rounded-xl bg-light-mantle pa-2 flex"
+        class="flex bg-light-mantle box-border dark:bg-dark-mantle flex-col gap-2 h-full items-center justify-between pa-2 rounded-xl"
     >
         <h2
-            class="dark:from-dark-sapphire dark:via-dark-lavender dark:text-dark-text ma-0 from-light-sapphire via-light-lavender to-light-mauve text-center text-3xl text-light-text transition-all dark:to-dark-mauve group-hover:bg-gradient-to-br group-hover:bg-clip-text group-hover:text-transparent group-hover:casl"
+            class="dark:from-dark-sapphire dark:text-dark-text dark:to-dark-mauve dark:via-dark-lavender from-light-sapphire group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:casl group-hover:text-transparent ma-0 text-3xl text-center text-light-text to-light-mauve transition-all via-light-lavender"
         >
             {project.name}
         </h2>
-        <p class="dark:text-dark-text ma-0 text-center text-xl text-light-text">
+        <p class="dark:text-dark-text ma-0 text-center text-light-text text-xl">
             {project.description}
         </p>
-        <div class="mb-2 flex-col space-y-2 flex">
+        <div class="flex flex-col mb-2 space-y-2">
             <span
-                class="dark:text-dark-text dark:outline-dark-maroon visited:dark:text-dark-text group-hover:dark:bg-dark-maroon group-hover:dark:text-dark-mantle group-hover:visited:dark:text-dark-mantle rounded-xl bg-transparent pa-2 text-center text-xl text-light-text decoration-none outline-light-maroon outline transition-all group-hover:(bg-light-maroon text-2xl text-light-mantle tracking-wider outline-0 visited:text-light-mantle) visited:text-light-text"
+                class="bg-transparent dark:outline-dark-maroon dark:text-dark-text decoration-none group-hover:(bg-light-maroon group-hover:dark:bg-dark-maroon group-hover:dark:text-dark-mantle group-hover:visited:dark:text-dark-mantle outline outline-0 outline-light-maroon pa-2 rounded-xl text-2xl text-center text-light-mantle text-light-text text-xl tracking-wider transition-all visited:dark:text-dark-text visited:text-light-mantle) visited:text-light-text"
             >
                 Learn more →
             </span>

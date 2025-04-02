@@ -5,7 +5,7 @@
 </script>
 
 <footer
-    class="flex align-items:center bg:surface fg:surface flex:col@<sm justify-content:space-between mt:6x mx:6x@lg px:6x px:4x@lg rt:2x text:5x text:6x@sm text:center"
+    class="flex bg:surface px:6x rt:2x text:5x align-items:center fg:surface justify-content:space-between mt:6x text:center text:6x@sm mx:6x@lg px:4x@lg flex:col@<sm"
 >
     <p class="font:semibold">
         Suya1671 | ©️ Suya 2024 under

@@ -7,9 +7,7 @@ export default {
         dark: 'media',
         light: 'media'
     },
-    selectors: {},
-    styles: {},
-    syntaxes: {
+    rules: {
         casl: {
             declare(value) {
                 return {
@@ -19,6 +17,7 @@ export default {
             matcher: /^casl:./
         }
     },
+    selectors: {},
     // TODO: update light mode to V3.1
     variables: {
         // surfaces

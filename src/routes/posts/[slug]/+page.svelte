@@ -5,7 +5,6 @@
     import Giscus from '@giscus/svelte';
     import '@portaljs/remark-callouts/styles.css';
     import { createTableOfContents } from '@melt-ui/svelte';
-    import { type Component } from 'svelte';
     import { Island } from 'sveltekit-islands';
 
     import './giscus.css';
@@ -63,21 +62,21 @@
     <meta content={dateModified.toISOString()} property="og:article:modified_time" />
 </svelte:head>
 
-<div class="grid-layout:article grid justify-items:center">
-    <aside class="sticky@md align-self:start grid-area:sidebar mx:2x top:10x">
+<div class="grid justify-items:center grid-layout:article">
+    <aside class="grid-area:sidebar mx:2x align-self:start top:10x sticky@md">
         {#key $headingsTree}
             <ToC {item} tree={$headingsTree} />
         {/key}
     </aside>
 
     <article
-        class="text-justify hypens-auto md:mx-0 break-word $col:blue $primary:text-primary $vgreen:green $vorange:orange $vred:red $vteal:teal bg:surface grid-area:content justify-self:center max-w:75ch mb:6x px:4x r:4x text:5x"
+        class="break-word bg:surface grid-area:content r:4x $col:blue $primary:text-primary $vgreen:green $vorange:orange $vred:red $vteal:teal px:4x text:5x justify-self:center max-w:75ch mb:6x hypens-auto md:mx-0 text-justify"
         id="article"
         use:transition={`post-${data.slug}`}
     >
-        <header class="mb:3x py:4x">
+        <header class="py:4x mb:3x">
             <hr
-                class="$from:text-primary $to:secondary border:none gradient(45deg,var(--from),var(--to)) h:1x r:2x"
+                class="border:none r:2x $from:text-primary $to:secondary gradient(45deg,var(--from),var(--to)) h:1x"
             />
 
             <h1 class="text:8x text:center" use:transition={`post-title-${data.slug}`}>
@@ -85,10 +84,10 @@
             </h1>
 
             <hr
-                class="$from:secondary $to:text-primary border:none gradient(45deg,var(--from),var(--to)) h:1x r:2x"
+                class="border:none r:2x $from:secondary $to:text-primary gradient(45deg,var(--from),var(--to)) h:1x"
             />
 
-            <p class="my-0 fg:subtle opacity:.9" use:transition={`post-dates-${data.slug}`}>
+            <p class="fg:subtle opacity:.9 my-0" use:transition={`post-dates-${data.slug}`}>
                 {m.post_card_by({ author: data.frontmatter.author })} | {m.post_card_published({
                     published: dateFormatter.format(datePublished),
                     updated: dateFormatter.format(dateModified)
@@ -123,7 +122,7 @@
         />
     </article>
 
-    <aside class="mr-4 md:block hidden grid-area:notes"></aside>
+    <aside class="hidden grid-area:notes md:block mr-4"></aside>
 </div>
 
 <style>

@@ -21,6 +21,6 @@
 
 <Skills {data} />
 
-<h2 class="fg:primary ml:4x ml:8x@md text:8x w:min">Posts</h2>
+<h2 class="text:8x fg:primary ml:4x w:min ml:8x@md">Posts</h2>
 
 <Posts posts={data.posts} />

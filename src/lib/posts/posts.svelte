@@ -30,20 +30,20 @@
     const { transition } = setupViewTransition();
 </script>
 
-<ul class="flex flex:wrap list-style:none mx:4x mx:8x@md p:0 r:6x">
+<ul class="flex list-style:none p:0 r:6x mx:4x flex:wrap mx:8x@md">
     {#each posts as post (post.slug)}
-        <li class="flex:1|1|330px m:2x mb:8x transform:scale(1.05):hover transition:all|300ms">
+        <li class="flex:1|1|330px m:2x transition:all|300ms mb:8x transform:scale(1.05):hover">
             <a
-                class="group fg:surface fg:surface:visited text-decoration:none"
+                class="text-decoration:none fg:surface fg:surface:visited group"
                 href={localizeHref(`/posts/${post.slug}`)}
             >
                 <article
-                    class="flex bg:surface bg:overlay:hover flex:col h:full px:4x py:3x r:6x transition:all|300ms"
+                    class="flex bg:surface r:6x transition:all|300ms px:4x py:3x flex:col h:full bg:overlay:hover"
                     use:transition={`post-${post.slug}`}
                 >
                     <header>
                         <h1
-                            class="casl:0.8 fg:primary line-height:1.3em mb:1x text:7x text:underline:hover"
+                            class="text:7x fg:primary line-height:1.3em mb:1x text:underline:hover casl:0.8"
                             use:transition={`post-title-${post.slug}`}
                         >
                             {post.title}

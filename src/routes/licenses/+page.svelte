@@ -4,7 +4,7 @@
 
 <PageHead description="Licensing information for the chaos portal." title="Licenses" />
 
-<section class="mt:2x mx:4x text:5x">
+<section class="mx:4x text:5x mt:2x">
     <h1>Licenses</h1>
 
     <p>

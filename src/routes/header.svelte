@@ -1,6 +1,4 @@
 <script lang="ts">
-    import type { Component, Snippet } from 'svelte';
-
     import { page } from '$app/state';
     import * as m from '$lib/paraglide/messages';
     import { getLocale, type Locale, locales, localizeHref } from '$lib/paraglide/runtime';
@@ -24,7 +22,7 @@
 
 {#snippet dropdownSection(title, Icon, content)}
     <div
-        class="flex rel bg:surface fg:surface flex:col@<xs mb:2x:not(:last)@<xs px:4x py:2x r:5x text:left"
+        class="flex rel bg:surface r:5x px:4x py:2x fg:surface text:left flex:col@<xs mb:2x:not(:last)@<xs"
     >
         <span>
             <Icon class="inline vertical:middle" />
@@ -36,11 +34,11 @@
 {/snippet}
 
 {#snippet links()}
-    <div class="bg:surface fg:surface p:2x@xs r:6x text:left">
+    <div class="bg:surface r:6x fg:surface text:left p:2x@xs">
         <ul class={'r:6x transition:all|300ms my:0 flex flex:col@<xs pl:0 pr:2x text:5x'}>
             <li class="list-style:none">
                 <a
-                    class="flex align-items:center fg:base fg:base:visited flex:row"
+                    class="flex align-items:center fg:base flex:row fg:base:visited"
                     href={localizeHref('/')}
                 >
                     <Arrow />
@@ -49,7 +47,7 @@
             </li>
             <li class="list-style:none">
                 <a
-                    class="flex align-items:center fg:base fg:base:visited flex:row"
+                    class="flex align-items:center fg:base flex:row fg:base:visited"
                     href={localizeHref('/posts')}
                 >
                     <Arrow />
@@ -82,9 +80,9 @@
 {/snippet}
 
 <nav
-    class="flex rel sticky@sm align-items:center bd:blur(8x) border:2|subtle/.80 h:12x justify-content:space-between mb:4x mx:4x r:6x top:4x z:10"
+    class="flex rel border:2|subtle/.80 r:6x mx:4x align-items:center bd:blur(8x) h:12x justify-content:space-between mb:4x top:4x z:10 sticky@sm"
 >
-    <section class="flex align-items:center gap:2x justify-content:space-between">
+    <section class="flex gap:2x align-items:center justify-content:space-between">
         <a
             class="flex place-items:center"
             href="/posts/the-wobbler"
@@ -105,7 +103,7 @@
     </section>
 
     <details class="hidden@xs">
-        <summary class="bg:overlay h:8x list-style:none p:2x r:6x">
+        <summary class="bg:overlay list-style:none p:2x r:6x h:8x">
             <Menu aria-label="Dropdown menu" class="size:8x" />
         </summary>
 
@@ -122,10 +120,10 @@
     >
         {@render links()}
         <details
-            class="flex rel bg:surface fg:surface flex:col@<xs p:1x pl:2x place-items:center r:6x"
+            class="flex rel bg:surface p:1x place-items:center r:6x fg:surface pl:2x flex:col@<xs"
         >
             <summary
-                class="flex align-items:center bg:none border:none flex:row gap:1x h:full text:5x"
+                class="flex bg:none border:none gap:1x text:5x align-items:center flex:row h:full"
             >
                 <Language />
                 {translateLocale(getLocale())}

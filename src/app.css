@@ -96,6 +96,7 @@ body {
 
 :root {
     view-transition-name: none;
+    interpolate-size: allow-keywords;
     --m3-easing: linear(
         0,
         0.002,

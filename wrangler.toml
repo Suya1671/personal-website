@@ -1,6 +1,6 @@
 name = "personal-website"
-pages_build_output_dir = ".svelte-kit/cloudflare"
-compatibility_date = "2023-01-22"
+main = ".svelte-kit/cloudflare/_worker.js"
+compatibility_date = "2025-06-23"
 
 compatibility_flags = ["nodejs_als"]
 
@@ -12,3 +12,7 @@ compatibility_date = "2023-01-22"
 
 [env.production.vars]
 NODE_VERSION = "22"
+
+[assets]
+directory = ".svelte-kit/cloudflare"
+binding = "ASSETS"

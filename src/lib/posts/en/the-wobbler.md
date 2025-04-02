@@ -31,7 +31,7 @@ In the distant past of before lockdown, 11 year old me decided that my memory wa
 
 9 year old me decided "hmm, I kinda like making scuffed music. Maybe I can upload those to YouTube!" And so my first corporate rebrand started, under the name of `TNT Man Inc`. I still have the original songs on hand, but I'm not sure if I want to publish them online again. Maybe one day as a blog post in case I need to speedrun making one. I'll just say that they were, _scuffed_.
 
-11 was the time I started programming open source, so I needed a name for my github account. This was chosen by chance to be the cool, hip, and fresh name of... Suyashtnt. I do not remember why I chose this name, but it probably has to do that my email was also "<suyashtnt@gmail.com>."
+11 was the time I started programming open source, so I needed a name for my github account. This was chosen by chance to be the cool, hip, and fresh name of... Suyashtnt. I do not remember why I chose this name, but it probably has to do that my email was also "suyashtnt@gmail.com."
 
 12 Year old me... It's a long story.
 

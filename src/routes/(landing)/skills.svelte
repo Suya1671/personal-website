@@ -1,7 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
 
-    import BigSkill from './bigSkill.svelte';
     import Skill from './skill.svelte';
 
     interface Props {
@@ -11,21 +10,13 @@
 </script>
 
 <section class="bg:surface by:2|overlay" id="about">
-    <h2 class="fg:primary ml:4x ml:8x@md my:2x text:9x w:min">Skills</h2>
+    <h2 class="my:2x text:9x fg:primary ml:4x w:min ml:8x@md">Skills</h2>
 
-    <div class="flex flex:col@<md gap:4x pb:4x px:6x">
-        <ul class="flex flex-basis:50% flex:col gap:4x list-style:none my:0 pl:0">
+    <div class="flex gap:4x px:6x pb:4x flex:col@<md">
+        <ul class="flex gap:4x list-style:none my:0 flex:row flex:wrap pl:0 w:full">
             {#each data.skills as skill (skill.id)}
-                <li class="bg:overlay r:4x">
-                    {#key data.selectedSkill}
-                        <Skill isSelected={skill.id === data.selectedSkill.id} {skill} />
-                    {/key}
-                </li>
+                <Skill {skill} />
             {/each}
         </ul>
-
-        {#key data.selectedSkill}
-            <BigSkill {data} />
-        {/key}
     </div>
 </section>
