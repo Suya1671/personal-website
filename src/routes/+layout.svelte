@@ -18,9 +18,15 @@
 </script>
 
 <Header />
-<main class="bg:base fg:base pt:4x">
+<main>
     {@render children()}
 </main>
 <Footer footerText={data.footerText} />
 
-<style></style>
+<style>
+    main {
+        padding-top: 1rem;
+        color: var(--base);
+        background-color: var(--background);
+    }
+</style>

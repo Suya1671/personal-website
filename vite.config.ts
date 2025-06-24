@@ -39,8 +39,6 @@ export default defineConfig({
         })
     ],
     server: {
-        fs: {
-            allow: ['./master.css.ts']
-        }
+        allowedHosts: ['.localhost', '.trycloudflare.com']
     }
 });

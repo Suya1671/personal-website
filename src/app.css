@@ -1,102 +1,7 @@
-body {
-    font-family: 'RecVar', sans-serif;
-    font-variation-settings:
-        'wght' 450,
-        'MONO' 0;
-
-    min-height: 100vh;
-
-    &:has(#dropdown-button[data-active='true']) {
-        overflow: hidden;
-    }
-
-    margin: 0;
-}
-
-button {
-    font-family: inherit;
-    color: inherit;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        color-scheme: dark;
-    }
-}
-
-@media (prefers-reduced-motion) {
-    ::view-transition-group(*),
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-        animation: none !important;
-    }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    transition: all 300ms;
-    font-variation-settings: 'CASL' 0.5;
-    font-weight: 500;
-
-    &:hover {
-        transition: all 300ms;
-        font-variation-settings: 'CASL' 1;
-    }
-
-    &:has(a):hover {
-        transition: all 300ms;
-        font-variation-settings: 'CASL' 1;
-        font-weight: 700;
-        transform: scale(1.05);
-    }
-}
-
-a :is(h1, h2, h3, h4, h5, h6):hover {
-    font-variation-settings: 'CASL' 1;
-    font-weight: 800;
-}
-
-a {
-    color: oklch(77% 0.2 240);
-
-    &:visited {
-        color: oklch(0.77 0.2 284);
-    }
-
-    @media (prefers-color-scheme: dark) {
-        color: oklch(77% 0.2 240);
-
-        &:visited {
-            color: oklch(0.77 0.2 284);
-        }
-    }
-}
-
-code {
-    font-family: 'RecVar', monospace !important;
-    font-variation-settings:
-        'MONO' 1,
-        'wght' 450;
-}
-
-html,
-body {
-    scroll-behavior: smooth;
-    background-color: oklch(90% 0.03 284);
-
-    @media (prefers-color-scheme: dark) {
-        background-color: oklch(13% 0.03 284);
-        color: rgb(212 213 242);
-    }
-}
+/* stylelint-disable custom-property-pattern */
+@import url('./kleur.css');
 
 :root {
-    view-transition-name: none;
-    interpolate-size: allow-keywords;
     --m3-easing: linear(
         0,
         0.002,
@@ -122,6 +27,108 @@ body {
         0.998 86.4%,
         1
     );
+    --subtle: oklch(30% 0.04 284deg);
+
+    /* https://rc.css.master.co/guide/responsive-design */
+    --4xs: 22.5rem;
+    --3xs: 30rem;
+    --2xs: 37.5rem;
+    --xs: 48rem;
+    --sm: 52.125rem;
+    --md: 64rem;
+    --lg: 80rem;
+    --xl: 90rem;
+    --2xl: 100rem;
+    --3xl: 120rem;
+    --4xl: 160rem;
+
+    /* https://tailwindcss.com/docs/box-shadow */
+    --shadow-2xs: 0 1px rgb(0 0 0 / 5%);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
+
+    color-scheme: light dark;
+    view-transition-name: none;
+
+    interpolate-size: allow-keywords;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+
+    font-family: RecVar, sans-serif;
+    font-variation-settings:
+        'wght' 450,
+        'MONO' 0;
+    color: var(--base);
+}
+
+button {
+    font-family: inherit;
+    color: inherit;
+}
+
+@media (prefers-reduced-motion) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-variation-settings: 'CASL' 0.5;
+    font-weight: 500;
+    transition: all 300ms;
+
+    &:hover {
+        font-variation-settings: 'CASL' 1;
+        transition: all 300ms;
+    }
+
+    &:has(a):hover {
+        transform: scale(1.05);
+        font-variation-settings: 'CASL' 1;
+        font-weight: 700;
+        transition: all 300ms;
+    }
+}
+
+a :is(h1, h2, h3, h4, h5, h6):hover {
+    font-variation-settings: 'CASL' 1;
+    font-weight: 800;
+}
+
+a {
+    color: var(--blue-500);
+
+    &:visited {
+        color: var(--purple-500);
+    }
+}
+
+code {
+    font-family: RecVar, monospace !important;
+    font-variation-settings:
+        'MONO' 1,
+        'wght' 450;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    color: var(--base);
+    background-color: var(--background);
 }
 
 * {
@@ -130,7 +137,7 @@ body {
 
 /* The bare minimum English subset, plus copyright & arrows (← ↑ → ↓) & quotes (“ ” ‘ ’) & bullet (•) */
 @font-face {
-    font-family: 'RecVar';
+    font-family: RecVar;
     font-weight: 300 800;
     font-display: swap;
     src: url('./lib/fonts/Recursive_VF_1.085--subset_range_english_basic-partial.woff2')
@@ -140,7 +147,7 @@ body {
 
 /* unicode latin-1 letters, basic european diacritics */
 @font-face {
-    font-family: 'RecVar';
+    font-family: RecVar;
     font-weight: 300 800;
     font-display: swap;
     src: url('./lib/fonts/Recursive_VF_1.085--subset_range_latin_1-partial.woff2') format('woff2');
@@ -149,7 +156,7 @@ body {
 
 /* unicode latin-1, punc/symbols & arrows (↔ ↕ ↖ ↗ ↘ ↙) */
 @font-face {
-    font-family: 'RecVar';
+    font-family: RecVar;
     font-weight: 300 800;
     font-display: swap;
     src: url('./lib/fonts/Recursive_VF_1.085--subset_range_latin_1_punc-partial.woff2')
@@ -159,7 +166,7 @@ body {
 
 /* unicode latin A extended */
 @font-face {
-    font-family: 'RecVar';
+    font-family: RecVar;
     font-weight: 300 800;
     font-display: swap;
     src: url('./lib/fonts/Recursive_VF_1.085--subset_range_latin_ext-partial.woff2') format('woff2');
@@ -183,8 +190,8 @@ body {
     }
 
     body {
-        line-height: 1.5;
         -webkit-font-smoothing: antialiased;
+        line-height: 1.5;
     }
 
     img,

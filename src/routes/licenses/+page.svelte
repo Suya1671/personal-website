@@ -14,24 +14,12 @@
             href="https://creativecommons.org/licenses/by-nc/4.0"
             target="_blank"
             rel="license noopener noreferrer"
-            class="inline-flex align-items:center"
+            class="creative-commons"
         >
             CC BY-NC 4.0
-            <img
-                class="h:6x ml:2x"
-                src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
-                alt=""
-            />
-            <img
-                class="h:6x ml:2x"
-                src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
-                alt=""
-            />
-            <img
-                class="h:6x ml:2x"
-                src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"
-                alt=""
-            />
+            <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" />
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" />
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="" />
         </a>. There are however, exceptions to this license:
     </p>
 
@@ -53,3 +41,21 @@
         </li>
     </ul>
 </section>
+
+<style>
+    section {
+        margin: 0 1rem;
+        margin-top: 0.5rem;
+        font-size: 1.25rem;
+    }
+
+    .creative-commons {
+        display: inline-flex;
+        align-items: center;
+
+        img {
+            height: 1.5rem;
+            margin-left: 0.5rem;
+        }
+    }
+</style>

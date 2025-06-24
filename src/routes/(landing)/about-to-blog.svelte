@@ -11,12 +11,10 @@
 <style>
     .spacer {
         aspect-ratio: 960 / 150;
+
+        background-image: light-dark(var(--light-transition), var(--dark-transition));
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-        background-image: var(--light-transition);
-        @media (prefers-color-scheme: dark) {
-            background-image: var(--dark-transition);
-        }
     }
 </style>

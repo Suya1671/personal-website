@@ -12,5 +12,16 @@
 
 <PageHead description="My blog posts" title="Posts" />
 
-<h1 class="text:10x ml:4x ml:8x@md">Posts</h1>
+<h1>Posts</h1>
 <Posts posts={data.posts} />
+
+<style>
+    h1 {
+        margin-left: 1rem;
+        font-size: 2.5rem;
+
+        @media (width > 64rem) {
+            margin-left: 2rem;
+        }
+    }
+</style>

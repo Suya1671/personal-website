@@ -9,14 +9,57 @@
     const { data }: Props = $props();
 </script>
 
-<section class="bg:surface by:2|overlay" id="about">
-    <h2 class="my:2x text:9x fg:primary ml:4x w:min ml:8x@md">Skills</h2>
+<section>
+    <h2>Skills</h2>
 
-    <div class="flex gap:4x px:6x pb:4x flex:col@<md">
-        <ul class="flex gap:4x list-style:none my:0 flex:row flex:wrap pl:0 w:full">
+    <div>
+        <ul>
             {#each data.skills as skill (skill.id)}
                 <Skill {skill} />
             {/each}
         </ul>
     </div>
 </section>
+
+<style>
+    section {
+        border: solid var(--overlay);
+        border-width: 2px 0;
+        background: var(--surface);
+    }
+
+    h2 {
+        width: min-content;
+        margin: 0.5rem 0;
+        margin-left: 1rem;
+
+        font-size: 2.25rem;
+        color: var(--primary);
+
+        @media (width > 64rem) {
+            margin-left: 2rem;
+        }
+    }
+
+    div {
+        display: flex;
+        gap: 1rem;
+        padding: 0 1.5rem;
+        padding-bottom: 1rem;
+
+        ul {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 1rem;
+
+            width: 100%;
+            padding-left: 0;
+
+            list-style: none;
+        }
+
+        @media (width < 64rem) {
+            flex-direction: column;
+        }
+    }
+</style>

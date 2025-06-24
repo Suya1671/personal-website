@@ -15,12 +15,27 @@
     const { data }: Props = $props();
 </script>
 
-<PageHead description={m.landingpagedesc()} title={undefined} />
+<PageHead description={m.landingpagedesc()} />
 
 <Island component={Hero}></Island>
 
 <Skills {data} />
 
-<h2 class="text:8x fg:primary ml:4x w:min ml:8x@md">Posts</h2>
+<h2>Posts</h2>
 
 <Posts posts={data.posts} />
+
+<style>
+    h2 {
+        width: min-content;
+        margin: 0.5rem 0;
+        margin-left: 1rem;
+
+        font-size: 2.25rem;
+        color: var(--primary);
+
+        @media (width > 64rem) {
+            margin-left: 2rem;
+        }
+    }
+</style>

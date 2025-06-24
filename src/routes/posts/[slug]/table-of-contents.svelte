@@ -1,47 +1,46 @@
 <script lang="ts">
-    import { melt, type TableOfContentsElements, type TableOfContentsItem } from '@melt-ui/svelte';
+    import {
+        createTableOfContents,
+        melt,
+        type TableOfContentsElements,
+        type TableOfContentsItem
+    } from '@melt-ui/svelte';
 
     import ToC from './table-of-contents.svelte';
 
-    const {
+    let {
         item,
         level = 1,
         tree
     }: {
         item: TableOfContentsElements['item'];
         level?: number;
-        tree: TableOfContentsItem[];
+        tree?: TableOfContentsItem[];
     } = $props();
+
+    if (level == 1) {
+        const { elements, states } = createTableOfContents({
+            activeType: 'highest-parents',
+            exclude: [],
+            selector: '#article'
+        });
+
+        item = elements.item;
+        states.headingsTree.subscribe((value) => (tree = value));
+    }
 </script>
 
-<ol
-    class="list-style:none text:4x counter-reset:item"
-    class:pl:0={level === 1}
-    class:pl:4x={level > 1}
->
+<ol class:first={level === 1}>
     {#if tree && tree.length}
         {#each tree as heading, i (i)}
-            <li class="pt-2x">
-                <a
-                    class="text-decoration:none fg:base block:after bg:none::after ~duration:300::after bg:repeat::after bg:scroll::after bottom:0::after fg:base:visited h:1:after w:0::after w:full[data-active]::after w:full:hover::after ~all::after absolute::after relative text:none"
-                    class:bg:blue::after={level === 6}
-                    class:bg:purple::after={level === 1 || level === 2}
-                    class:bg:red::after={level === 3}
-                    class:bg:teal::after={level === 5}
-                    class:bg:yellow::after={level === 4}
-                    class:fg:blue:hover={level === 6}
-                    class:fg:blue:visited:hover={level === 2 || level === 6}
-                    class:fg:purple:hover={level === 1 || level === 2}
-                    class:fg:purple:visited:hover={level === 1}
-                    class:fg:red:hover={level === 3}
-                    class:fg:red:visited:hover={level === 3}
-                    class:fg:teal:hover={level === 5}
-                    class:fg:teal:visited:hover={level === 5}
-                    class:fg:yellow:hover={level === 4}
-                    class:fg:yellow:visited:hover={level === 4}
-                    href={`#${heading.id}`}
-                    use:melt={$item(heading.id)}
-                >
+            <li
+                class:purple={level === 1 || level === 2}
+                class:red={level === 3}
+                class:orange={level === 4}
+                class:teal={level === 5}
+                class:blue={level === 6}
+            >
+                <a href={`#${heading.id}`} use:melt={$item(heading.id)}>
                     {heading.title}
                 </a>
             </li>
@@ -55,13 +54,73 @@
 </ol>
 
 <style>
-    a::before {
-        content: counters(item, '.') '. ';
-        counter-increment: item;
-        display: inline;
-    }
+    ol {
+        --col: var(--base);
 
-    a::after {
-        content: ' ';
+        counter-reset: item;
+        padding-left: 1rem;
+        font-size: 1rem;
+        list-style: none;
+
+        .purple {
+            --col: var(--purple);
+        }
+
+        .blue {
+            --col: var(--blue);
+        }
+
+        .orange {
+            --col: var(--orange);
+        }
+
+        .red {
+            --col: var(--red);
+        }
+
+        .teal {
+            --col: var(--teal);
+        }
+
+        a {
+            position: relative;
+            color: var(--col);
+            text-decoration: none;
+            transition: all 300ms;
+
+            &::before {
+                content: counters(item, '.') '. ';
+                counter-increment: item;
+                display: inline;
+            }
+
+            &::after {
+                content: ' ';
+
+                position: absolute;
+                bottom: 0;
+
+                display: block;
+
+                width: 0;
+                height: 1px;
+
+                background: var(--col) repeat scroll;
+
+                transition: all 300ms;
+            }
+
+            &:visited {
+                color: var(--col);
+            }
+
+            &:hover::after {
+                width: 100%;
+            }
+
+            &[data-active]::after {
+                width: 100%;
+            }
+        }
     }
 </style>

@@ -1,0 +1,11 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-clean-order",
+        "stylelint-config-html/svelte"
+    ],
+    "ignoreFiles": ["node_modules/**/*", ".svelte-kit/**/*"],
+    "rules": {
+        "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global"] }]
+    }
+}

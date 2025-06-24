@@ -72,54 +72,48 @@
     });
 </script>
 
-<details
-    class="bg:overlay flex:80ch|1|0 gap:4x overflow:hidden r:4x text-decoration:none px:4x py:2x align-items:center fg:overlay outline:2 outline:transparent outline:primary|solid[open] fg:overlay:visited"
-    name="skill"
->
+<details name="skill">
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-    <summary class="flex gap:4x list-style:none text:5x align-items:center content:'+'::after">
+    <summary>
         <!-- eslint-disable-next-line svelte/no-at-html-tags -->
         {@html skill.icon}
-        <hgroup class="flex-grow:1">
-            <h1 class="my:0 text:7x line-height:1.2">
+        <hgroup>
+            <h1>
                 {skill?.name}
             </h1>
-            <p class="my:0">
+            <p>
                 {skill?.description}
             </p>
         </hgroup>
     </summary>
 
-    <article class="flex flex:1 gap:4x r:4x py:4x box:border flex-basis:70ch flex:col">
-        <!-- chips -->
-        <section class="flex gap:2x">
+    <article>
+        <section class="chips">
             {#snippet chipContent(content)}
-                <p class="$text:base my:0 text:5x fg:var(--text)">
+                <p>
                     {content}
                 </p>
             {/snippet}
 
             <div
-                class="flex p:3x place-items:center r:4x h:8x"
-                class:bg:green={skill?.proficiency === 'Beginner'}
-                class:bg:red={skill?.proficiency === 'Skilled'}
-                class:bg:yellow={skill?.proficiency === 'Intermediate'}
+                class:green={skill?.proficiency === 'Beginner'}
+                class:red={skill?.proficiency === 'Skilled'}
+                class:orange={skill?.proficiency === 'Intermediate'}
             >
                 {@render chipContent(proficiency)}
             </div>
 
             <div
-                class="flex p:3x place-items:center r:4x h:8x"
-                class:bg:blue={skill?.type === 'Tool'}
-                class:bg:green={skill?.type === 'Language'}
-                class:bg:orange={skill?.type === 'Framework'}
-                class:bg:purple={skill?.type === 'Other' || skill?.type === 'Backend'}
-                class:bg:teal={skill?.type === 'Frontend'}
+                class:blue={skill?.type === 'Tool'}
+                class:green={skill?.type === 'Language'}
+                class:orange={skill?.type === 'Framework'}
+                class:purple={skill?.type === 'Other' || skill?.type === 'Backend'}
+                class:teal={skill?.type === 'Frontend'}
             >
                 {@render chipContent(type)}
             </div>
         </section>
-        <section class="text:5x mt:0>p:first-child">
+        <section class="experience">
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
             {@html skill.experience}
         </section>
@@ -131,20 +125,120 @@
         @supports (interpolate-size: allow-keywords) {
             &::details-content {
                 block-size: 0;
-                transition-property: block-size, content-visibility;
-                transition-duration: 600ms;
+
                 transition-timing-function: var(--m3-easing);
+                transition-duration: 600ms;
+                transition-property: block-size, content-visibility;
+
                 transition-behavior: allow-discrete;
             }
         }
 
+        overflow: hidden;
+        flex: 1 1 80ch;
+        gap: 1rem;
+        align-items: center;
+
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+
+        text-decoration: none;
+
+        background: var(--overlay);
+        outline: 2px solid transparent;
+
+        summary {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+
+            font-size: 1.25rem;
+            list-style: none;
+
+            &::after {
+                content: '+';
+            }
+
+            hgroup {
+                flex-grow: 1;
+
+                h1 {
+                    font-size: 1.75rem;
+                    line-height: 1.2;
+                }
+            }
+        }
+
         &[open] {
+            outline-color: var(--primary);
+
             &::details-content {
                 block-size: auto;
             }
 
             summary::after {
                 content: '-';
+            }
+        }
+
+        article {
+            display: flex;
+            flex: 1 70ch;
+            flex-direction: column;
+            gap: 1rem;
+
+            padding: 1rem 0;
+            border-radius: 1rem;
+
+            .chips {
+                display: flex;
+                gap: 0.5rem;
+
+                div {
+                    display: flex;
+                    place-items: center;
+
+                    height: 2rem;
+                    padding: 0.75rem;
+                    border-radius: 1rem;
+
+                    &.green {
+                        background: var(--green);
+                    }
+
+                    &.red {
+                        background: var(--red);
+                    }
+
+                    &.blue {
+                        background: var(--blue);
+                    }
+
+                    &.purple {
+                        background: var(--purple);
+                    }
+
+                    &.orange {
+                        background: var(--orange);
+                    }
+
+                    &.teal {
+                        background: var(--teal);
+                    }
+                }
+
+                p {
+                    font-size: 1.25rem;
+                    color: var(--overlay);
+                }
+            }
+
+            .experience {
+                font-size: 1.25rem;
+
+                :global(p) {
+                    margin-bottom: 0.5rem;
+                }
             }
         }
     }

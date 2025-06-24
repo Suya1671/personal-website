@@ -1,5 +1,4 @@
 import js from '@eslint/js';
-import css from '@master/eslint-config-css';
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -24,7 +23,6 @@ export default [
         ignores: ['.svelte-kit/**/*', 'node_modules/**/*', 'src/lib/paraglide/**/*']
     },
     js.configs.recommended,
-    css,
     {
         files: ['**/*.ts'],
         languageOptions: {

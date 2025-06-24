@@ -39,8 +39,8 @@ declare global {
         type MdsvexResolver = () => Promise<MdsvexFile>;
     }
 
-    module '*as=optimize' {
-        const out: unknown;
+    module '*&enhanced' {
+        const out: Exclude<import('@sveltejs/enhanced-img').EnhancedImgAttributes['src'], string>;
         export default out;
     }
 }

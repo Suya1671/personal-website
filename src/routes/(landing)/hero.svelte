@@ -1,13 +1,15 @@
 <script lang="ts">
     import { browser } from '$app/environment';
+    import { createImageSet } from '$lib/helpers/css';
     import { easeEmphasizedCss } from '$lib/helpers/easing';
     import * as m from '$lib/paraglide/messages';
+    import Orbit from '$lib/pictures/Orbit.png?w=600;300&h=240;600;800&enhanced';
     import { createTimeline, utils, waapi } from 'animejs';
     import { onMount } from 'svelte';
     import Discord from '~icons/ic/baseline-discord';
     import Email from '~icons/material-symbols/mail-outline';
 
-    const names = ['Suya\\1671', 'A Badly Drawn Wobbler'];
+    const names = ['Suya Singh', 'Suya\\1671', 'A Badly Drawn Wobbler'];
     const longestName = names.reduce((a, b) => (a.length > b.length ? a : b));
 
     const prefersReducedMotion = () => {
@@ -20,7 +22,7 @@
         const selector = `.${word} .letter`;
 
         waapi.animate(selector, {
-            '--casl': [0, 1],
+            '--casl': () => utils.random(0, 1),
             duration: 300,
             ease: easeEmphasizedCss,
             fontWeight: [400, 900],
@@ -46,95 +48,95 @@
         });
     };
 
+    const heroBgImageSet = createImageSet(Orbit.sources);
+
     onMount(() => {
         if (prefersReducedMotion()) return;
-        const duration = 600;
-        const delay = 2500;
+        const duration = 1000;
+        const delay = 5000;
 
-        let tlDefinition = createTimeline({
+        CSS.registerProperty({
+            inherits: false,
+            initialValue: '0',
+            name: '--casl',
+            syntax: '<number>'
+        });
+
+        const timeline = createTimeline({
             autoplay: false,
             defaults: { duration },
             loop: true
         });
 
         for (const [i] of names.entries()) {
-            const selector = `.names .name-${i}`;
+            const selector = `.name-${i}`;
 
-            tlDefinition
-                .sync(
-                    waapi.animate(selector, {
-                        '--casl': [0, 1],
-                        ease: easeEmphasizedCss,
-                        fontWeight: [100, 600],
-                        opacity: [0, 1],
-                        y: [-30, 0]
-                    })
-                )
-                .sync(
-                    waapi.animate(selector, {
-                        '--casl': [1, 0],
-                        delay,
-                        ease: easeEmphasizedCss,
-                        fontWeight: [600, 100],
-                        opacity: [1, 0],
-                        y: [0, 30]
-                    })
-                );
+            timeline.call(() =>
+                waapi.animate(selector, {
+                    '--casl': [0, 1],
+                    composition: 'replace',
+                    duration,
+                    ease: easeEmphasizedCss,
+                    filter: ['blur(12px)', 'blur(0px)'],
+                    fontWeight: [100, 600],
+                    opacity: [0, 1],
+                    y: [-30, 0]
+                })
+            );
+
+            timeline.add({ duration: delay });
+
+            timeline.call(() =>
+                waapi.animate(selector, {
+                    '--casl': [1, 0],
+                    composition: 'replace',
+                    duration,
+                    ease: easeEmphasizedCss,
+                    filter: ['blur(0px)', 'blur(12px)'],
+                    fontWeight: [600, 100],
+                    opacity: [1, 0],
+                    y: [0, 30]
+                })
+            );
         }
 
-        tlDefinition.play();
+        timeline.play();
     });
 </script>
 
-<section
-    class="flex rel bg:base gap:6x m:6x fg:base flex:col justify-items:stretch mt:0x flex:row@>1080px"
-    id="landing"
->
-    <section class="flex bg:surface flex:0|0|600px r:4x px:4x align-items:center flex:col">
-        <div class="flex place-items:center r:4x justify-content:space-between mt:6x gap:6x@sm">
-            <div
-                class={'r:4x ~all|300ms gradient(90deg,var(--from),var(--to)) $from:text-primary $to:secondary scale(0.9):hover scale(1.25):hover>div>picture>img mr:5x flex:grow'}
-            >
-                <div class="flex p:2x place-items:center r:6x">
-                    <enhanced:img
-                        alt="A contemporary portrait of me."
-                        class="~all|300ms r:4x h:auto vertical:middle w:36x object-cover"
-                        loading="eager"
-                        sizes="min(180px, 100vw)"
-                        src="$lib/pictures/face.png?w=160;140"
-                    ></enhanced:img>
-                </div>
+<section class="landing">
+    <section
+        style="
+
+--bg: {heroBgImageSet};"
+    >
+        <div class="greeting">
+            <div class="image-container">
+                <enhanced:img
+                    alt="A contemporary portrait of me."
+                    loading="eager"
+                    sizes="min(180px, 100vw)"
+                    src="$lib/pictures/face.png?w=160;140"
+                ></enhanced:img>
             </div>
-            <h1
-                class={'m:0 tml:2x ext:center text:10x line-height:1.2! {mb:0;px:0;text:left}@lg'}
-                class:text:12x!@xs={browser}
-                class:line-height:1.2!@xs={browser}
-            >
+            <h1 class="hello" class:browser>
                 {m.hello()}
-                <span class="flex flex:col" class:names={browser}>
+                <span class="names animate-casl" class:browser>
                     {#each names as name, i}
-                        <span
-                            class="name-{i} gradient-text inline $from:text-primary $to:secondary gradient(60deg,var(--from),var(--to)) animate-casl"
-                        >
+                        <span class="name name-{i}">
                             {#each name.split('\\') as segement}
                                 {segement}<wbr />
                             {/each}
                         </span>
                     {/each}
-                    <!-- add an always invisible "spacer" span for the largest one. This prevents weird resizing issues-->
-                    <span
-                        class="inline invisible $casl:1 font:semibold animate-casl"
-                        aria-hidden="true">{longestName}</span
-                    >
+                    <span aria-hidden="true" class="animate-casl">{longestName}</span>
                 </span>
             </h1>
         </div>
-        <div class="flex my:8x align-items:center flex:col w:full">
-            <ul
-                class={'my:0 gap:6x@<2xs flex flex:col@<2xs align-items:center justify-content:space-around pl:0 text:6x list-style:none@<2xs w:full'}
-            >
+        <div class="info">
+            <ul class="roles">
                 {#snippet tag(name, content, href)}
-                    <li class="flex list-style:none flex-grow:1 justify-content:center w:full">
+                    <li>
                         <h2
                             class={name}
                             onmouseenter={() => animateWord(name)}
@@ -143,23 +145,19 @@
                             ontouchstart={() => animateWord(name)}
                         >
                             {#if href}
-                                <a
-                                    class="flex text:underline fg:surface text-decoration:surface text-underline-offset:14 fg:surface:visited fg:blue:hover>span text-decoration:blue:hover"
-                                    {href}
-                                    rel="me"
-                                >
+                                <a {href} rel="me">
                                     {#each content.split('') as letter}
-                                        <span class="inline-block animate-casl letter"
-                                            >{letter}</span
-                                        >
+                                        <span class="letter animate-casl">
+                                            {letter}
+                                        </span>
                                     {/each}
                                 </a>
                             {:else}
-                                <span class="flex px:1x">
+                                <span class="wrapper">
                                     {#each content.split('') as letter}
-                                        <span class="inline-block animate-casl letter"
-                                            >{letter}</span
-                                        >
+                                        <span class="letter animate-casl">
+                                            {letter}
+                                        </span>
                                     {/each}
                                 </span>
                             {/if}
@@ -170,43 +168,31 @@
                 {@render tag('programmer', m.hero_programmer(), 'https://github.com/Suya1671')}
                 {@render tag('gamer', m.hero_gamer(), 'https://steamcommunity.com/id/Suya1671')}
             </ul>
-            <ul
-                class="flex gap:1ch list-style:none my:0 text:5x align-items:center line-height:0 mt:8x pl:0 align-items:start@md flex:col@<2xs"
-            >
-                <li
-                    class="flex gap:1ch align-items:center fg:surface fg:surface:visited text-decoration:blue:hover"
-                >
-                    <Email class="h-8 w-8" />
-                    <a
-                        class="fg:surface fg:surface:visited text-decoration:blue:hover"
-                        href="mailto:suyashtnt@gmail.com"
-                    >
-                        Suyashtnt@gmail.com
-                    </a>
+            <ul class="contact">
+                <li>
+                    <Email />
+                    <a href="mailto:suyashtnt@gmail.com"> Suyashtnt@gmail.com </a>
                 </li>
-                <li
-                    class="flex gap:1ch align-items:center fg:surface fg:surface:visited text-decoration:blue:hover"
-                >
-                    <Discord class="h-8 w-8" />
+                <li>
+                    <Discord />
                     <a
-                        class="fg:surface fg:surface:visited text-decoration:blue:hover"
                         href="https://discord.com"
                         onclick={(e) => {
                             e.preventDefault();
-                            navigator.clipboard.writeText('suyashtnt');
+                            navigator.clipboard.writeText('wobbl.in');
                             alert('Copied to clipboard!');
                         }}
                         rel="noopener noreferrer"
                         target="_blank"
                     >
-                        @suyashtnt
+                        @wobbl.in
                     </a>
                 </li>
             </ul>
         </div>
     </section>
 
-    <section class="flex place-items:center text:5x flex:row">
+    <section>
         <p>
             Hey! I'm Suya, your probably-not-local computer nerd programming person. I like to make
             (questionably useful) apps, websites, and random utilities. I also am known to be a
@@ -224,18 +210,320 @@
 </section>
 
 <style>
-    .names {
-        display: grid;
+    @media (prefers-color-scheme: light) {
+        @property --from {
+            inherits: false;
+
+            /* primary */
+            initial-value: lch(59% 51 299deg);
+            syntax: '<color>';
+        }
+
+        @property --to {
+            inherits: false;
+
+            /* secondary */
+            initial-value: (59% 40 251deg);
+            syntax: '<color>';
+        }
     }
 
-    .names > * {
-        grid-row: 1;
-        grid-column: 1;
+    @media (prefers-color-scheme: dark) {
+        @property --from {
+            inherits: false;
+
+            /* primary */
+            initial-value: lch(70% 52 299deg);
+            syntax: '<color>';
+        }
+
+        @property --to {
+            inherits: false;
+
+            /* secondary */
+            initial-value: lch(70% 45 248deg);
+            syntax: '<color>';
+        }
     }
 
-    .animate-casl {
-        font-variation-settings:
-            'CASL' var(--casl),
-            'MONO' var(--casl);
+    .landing {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        justify-items: stretch;
+
+        margin: 1.5rem;
+        margin-top: 0;
+
+        color: var(--base);
+
+        background-color: var(--background);
+
+        & > :first-child {
+            position: relative;
+
+            display: flex;
+            flex: 0 0 600px;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+
+            padding: 0 1rem;
+            padding: 1rem;
+            border-radius: 1.2rem;
+
+            background-image: var(--bg);
+            background-position: center;
+            background-size: cover;
+
+            &::before {
+                content: '';
+
+                position: absolute;
+                top: 0;
+
+                display: block;
+
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem;
+
+                backdrop-filter: blur(4px) brightness(30%);
+            }
+
+            & > * {
+                position: relative;
+                z-index: 1;
+            }
+
+            .greeting {
+                display: flex;
+                gap: 1.25rem;
+                place-items: center;
+                justify-content: space-between;
+
+                border-radius: 1rem;
+
+                .image-container {
+                    flex-grow: 1;
+
+                    padding: 0.7rem;
+                    border-radius: 1rem;
+
+                    background: linear-gradient(225deg, var(--from), var(--to));
+
+                    transition:
+                        --from 5s,
+                        --to 5s,
+                        padding 600ms,
+                        margin 600ms;
+
+                    &:hover {
+                        --from: var(--secondary);
+                        --to: var(--primary);
+
+                        margin: 0 0.2rem;
+                        padding: 0.7rem 0.5rem;
+
+                        enhanced\:img {
+                            transform: scale(1.2);
+                        }
+                    }
+
+                    enhanced\:img {
+                        width: 9rem;
+                        height: auto;
+                        border-radius: 1rem;
+
+                        vertical-align: middle;
+
+                        object-fit: cover;
+
+                        transition: all 500ms;
+                    }
+                }
+
+                .hello {
+                    font-size: 2.5rem;
+                    line-height: 1.2;
+                    text-align: center;
+
+                    .names {
+                        display: flex;
+                        flex-direction: column;
+
+                        &.browser {
+                            display: grid;
+
+                            > * {
+                                grid-column: 1;
+                                grid-row: 1;
+                                opacity: 0;
+                            }
+                        }
+
+                        .name {
+                            display: inline;
+                            background-image: linear-gradient(
+                                60deg,
+                                var(--primary),
+                                var(--secondary)
+                            );
+                            background-clip: text;
+
+                            -webkit-text-fill-color: transparent;
+                        }
+
+                        [aria-hidden] {
+                            display: inline;
+                            font-weight: 600;
+                            visibility: hidden;
+                        }
+                    }
+
+                    @media (width > 80rem) {
+                        padding: inherit 0;
+                        text-align: left;
+                    }
+
+                    @media (width > 90rem) {
+                        &.browser {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+
+                @media (width > 52.125rem) {
+                    gap: 1.5rem;
+                }
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+
+                width: 100%;
+
+                font-size: 1.25rem;
+
+                .roles {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    width: 100%;
+                    padding-left: 0;
+
+                    list-style: none;
+
+                    li {
+                        display: flex;
+                        flex-grow: 1;
+                        justify-content: center;
+
+                        width: 100%;
+
+                        list-style: none;
+
+                        a {
+                            display: flex;
+
+                            color: var(--base);
+                            text-decoration: underline var(--blue);
+                            text-underline-offset: 14;
+
+                            transition: all 300ms;
+
+                            &:visited {
+                                color: var(--base);
+                                text-decoration: underline var(--purple);
+                            }
+
+                            &:hover {
+                                text-decoration: underline var(--blue);
+                                text-underline-offset: 14;
+
+                                > span {
+                                    color: var(--blue);
+                                }
+                            }
+                        }
+
+                        .wrapper {
+                            display: flex;
+                            padding: 0 0.25rem;
+                        }
+
+                        .letter {
+                            display: inline-block;
+                        }
+                    }
+
+                    @media (width < 37.5rem) {
+                        flex-direction: column;
+                        gap: 1.5rem;
+                    }
+                }
+
+                .contact {
+                    display: flex;
+                    gap: 1ch;
+                    align-items: center;
+
+                    padding-left: 0;
+
+                    font-size: 1.25rem;
+                    line-height: 0;
+                    list-style: none;
+
+                    li {
+                        display: flex;
+                        gap: 1ch;
+                        align-items: center;
+
+                        a {
+                            color: var(--base);
+
+                            &:hover {
+                                color: var(--blue);
+                                text-decoration: underline var(--blue);
+                            }
+
+                            &:visited {
+                                color: var(--base);
+                                text-decoration: underline var(--purple);
+                            }
+                        }
+                    }
+
+                    @media (width > 64rem) {
+                        align-items: start;
+                    }
+
+                    @media (width < 37.5rem) {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+
+        & > :last-child {
+            display: flex;
+            flex-direction: row;
+            place-items: center;
+            font-size: 1.25rem;
+        }
+
+        .animate-casl {
+            font-variation-settings:
+                'CASL' var(--casl),
+                'MONO' var(--casl);
+        }
+
+        @media (width > 1080px) {
+            flex-direction: row;
+        }
     }
 </style>

@@ -30,30 +30,17 @@
     const { transition } = setupViewTransition();
 </script>
 
-<ul class="flex list-style:none p:0 r:6x mx:4x flex:wrap mx:8x@md">
+<ul>
     {#each posts as post (post.slug)}
-        <li class="flex:1|1|330px m:2x transition:all|300ms mb:8x transform:scale(1.05):hover">
-            <a
-                class="text-decoration:none fg:surface fg:surface:visited group"
-                href={localizeHref(`/posts/${post.slug}`)}
-            >
-                <article
-                    class="flex bg:surface r:6x transition:all|300ms px:4x py:3x flex:col h:full bg:overlay:hover"
-                    use:transition={`post-${post.slug}`}
-                >
+        <li>
+            <a href={localizeHref(`/posts/${post.slug}`)}>
+                <article use:transition={`post-${post.slug}`}>
                     <header>
-                        <h1
-                            class="text:7x fg:primary line-height:1.3em mb:1x text:underline:hover casl:0.8"
-                            use:transition={`post-title-${post.slug}`}
-                        >
+                        <h1 use:transition={`post-title-${post.slug}`}>
                             {post.title}
                         </h1>
 
-                        <p
-                            class="opacity:.7 text:base"
-                            role="doc-subtitle"
-                            use:transition={`post-dates-${post.slug}`}
-                        >
+                        <p role="doc-subtitle" use:transition={`post-dates-${post.slug}`}>
                             {m.post_card_published({
                                 published: dateFormatter.format(new Date(post.date)),
                                 updated: dateFormatter.format(new Date(post.updated))
@@ -69,3 +56,91 @@
         </li>
     {/each}
 </ul>
+
+<style>
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+
+        margin: 0 1rem;
+        padding: 0;
+        border-radius: 1.5rem;
+
+        list-style: none;
+
+        li {
+            flex: 1 1 330px;
+            margin: 0.5rem;
+            margin-bottom: 2rem;
+            transition: transform 300ms;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            a {
+                color: var(--base);
+                text-decoration: none;
+
+                &:hover {
+                    color: var(--base);
+                }
+
+                &:visited {
+                    article {
+                        border-color: var(--purple);
+                    }
+
+                    h1 {
+                        color: var(--purple);
+                    }
+                }
+
+                article {
+                    display: flex;
+                    flex-direction: column;
+
+                    height: 100%;
+                    padding: 0.75rem 1rem;
+                    border: 2px solid var(--blue);
+                    border-radius: 1.5rem;
+
+                    background: var(--surface);
+
+                    transition: background 300ms;
+
+                    &:hover {
+                        background: var(--overlay);
+
+                        h1 {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    header {
+                        h1 {
+                            margin-bottom: 0.25rem;
+                            font-size: 1.75rem;
+                            line-height: 1.3em;
+                            color: var(--blue);
+                        }
+
+                        p {
+                            color: var(--base);
+                            opacity: 0.7;
+                        }
+                    }
+
+                    footer {
+                        margin: 0.5rem 0;
+                        color: var(--base);
+                    }
+                }
+            }
+        }
+
+        @media (width > 64rem) {
+            margin: 0 2rem;
+        }
+    }
+</style>

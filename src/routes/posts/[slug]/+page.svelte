@@ -1,14 +1,14 @@
 <script lang="ts">
+    import { browser } from '$app/environment';
     import PageHead from '$lib/components/page-head.svelte';
     import * as m from '$lib/paraglide/messages';
     import { getLocale } from '$lib/paraglide/runtime';
-    import Giscus from '@giscus/svelte';
     import '@portaljs/remark-callouts/styles.css';
-    import { createTableOfContents } from '@melt-ui/svelte';
-    import { Island } from 'sveltekit-islands';
+    import Giscus from '@giscus/svelte';
 
     import './giscus.css';
 
+    import { Island } from 'sveltekit-islands';
     import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { PageData } from './$types';
@@ -44,14 +44,10 @@
 
     const { transition } = setupViewTransition();
 
-    const {
-        elements: { item },
-        states: { headingsTree }
-    } = createTableOfContents({
-        activeType: 'highest-parents',
-        exclude: [],
-        selector: '#article'
-    });
+    const getTheme = () => {
+        if (!browser) return;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
 </script>
 
 <PageHead {description} title={data.frontmatter.title} />
@@ -62,119 +58,215 @@
     <meta content={dateModified.toISOString()} property="og:article:modified_time" />
 </svelte:head>
 
-<div class="grid justify-items:center grid-layout:article">
-    <aside class="grid-area:sidebar mx:2x align-self:start top:10x sticky@md">
-        {#key $headingsTree}
-            <ToC {item} tree={$headingsTree} />
-        {/key}
+<article
+    class="break-word bg:surface grid-area:content r:4x $col:blue $primary:text-primary $vgreen:green $vorange:orange $vred:red $vteal:teal px:4x text:5x justify-self:center max-w:75ch mb:6x hypens-auto md:mx-0 text-justify"
+    id="article"
+    use:transition={`post-${data.slug}`}
+>
+    <aside class="toc">
+        <Island component={ToC} />
     </aside>
 
-    <article
-        class="break-word bg:surface grid-area:content r:4x $col:blue $primary:text-primary $vgreen:green $vorange:orange $vred:red $vteal:teal px:4x text:5x justify-self:center max-w:75ch mb:6x hypens-auto md:mx-0 text-justify"
-        id="article"
-        use:transition={`post-${data.slug}`}
-    >
-        <header class="py:4x mb:3x">
-            <hr
-                class="border:none r:2x $from:text-primary $to:secondary gradient(45deg,var(--from),var(--to)) h:1x"
-            />
+    <header>
+        <hr class="top" />
 
-            <h1 class="text:8x text:center" use:transition={`post-title-${data.slug}`}>
-                {data.frontmatter.title}
-            </h1>
+        <h1 use:transition={`post-title-${data.slug}`}>
+            {data.frontmatter.title}
+        </h1>
 
-            <hr
-                class="border:none r:2x $from:secondary $to:text-primary gradient(45deg,var(--from),var(--to)) h:1x"
-            />
+        <hr class="bottom" />
 
-            <p class="fg:subtle opacity:.9 my-0" use:transition={`post-dates-${data.slug}`}>
-                {m.post_card_by({ author: data.frontmatter.author })} | {m.post_card_published({
-                    published: dateFormatter.format(datePublished),
-                    updated: dateFormatter.format(dateModified)
-                })}
-                {#if draft}
-                    | <span class="fg:red">{m.post_card_draft()}</span>
-                {/if}
-            </p>
-        </header>
+        <p use:transition={`post-dates-${data.slug}`}>
+            {m.post_card_by({ author: data.frontmatter.author })} | {m.post_card_published({
+                published: dateFormatter.format(datePublished),
+                updated: dateFormatter.format(dateModified)
+            })}
+            {#if draft}
+                | <span class="draft">{m.post_card_draft()}</span>
+            {/if}
+        </p>
+    </header>
 
-        <div class="max-w:calc(100vw-2rem)">
+    <div class="content">
+        <p>
             <!-- This ensures the JS for the component is only loaded if the post requires/asks for it -->
             {#if data.frontmatter.useJS}
                 <Island component={data.component}></Island>
             {:else}
                 <data.component></data.component>
             {/if}
-        </div>
+        </p>
+    </div>
 
-        <Giscus
-            category="Announcements"
-            categoryId="DIC_kwDOI0N8xs4Caho4"
-            emitMetadata="1"
-            inputPosition="top"
-            lang={getLocale()}
-            loading="lazy"
-            mapping="og:title"
-            reactionsEnabled="1"
-            repo="Suya1671/personal-website"
-            repoId="R_kgDOI0N8xg"
-            strict="0"
-        />
-    </article>
+    <Island
+        component={Giscus}
+        class="comments"
+        props={{
+            category: 'Announcements',
+            categoryId: 'DIC_kwDOI0N8xs4Caho4',
+            class: 'giscus',
+            emitMetadata: '1',
+            inputPosition: 'top',
+            lang: getLocale(),
+            loading: 'lazy',
+            mapping: 'og:title',
+            reactionsEnabled: '1',
+            repo: 'Suya1671/personal-website',
+            repoId: 'R_kgDOI0N8xg',
+            strict: '0',
+            theme: getTheme()
+        }}
+    />
 
-    <aside class="hidden grid-area:notes md:block mr-4"></aside>
-</div>
+    <aside class="notes hidden grid-area:notes md:block mr-4"></aside>
+</article>
 
 <style>
-    .grid-layout\:article {
+    article {
+        display: grid;
         grid-template-areas:
+            'title'
             'sidebar'
-            'content';
-    }
+            'content'
+            'comments';
+        justify-items: center;
 
-    @media (min-width: 1024px) {
-        .grid-layout\:article {
+        header {
+            grid-area: title;
+
+            width: min(100vw - 2rem, 75ch);
+            padding: 1rem;
+            padding-top: 1.5rem;
+            border-radius: 1rem 1rem 0 0;
+
+            font-size: 1.2rem;
+
+            background: var(--surface);
+
+            hr {
+                height: 0.25rem;
+                border: none;
+                border-radius: 0.5rem;
+
+                &.top {
+                    background: linear-gradient(45deg, var(--primary), var(--secondary));
+                }
+
+                &.bottom {
+                    background: linear-gradient(45deg, var(--secondary), var(--primary));
+                }
+            }
+
+            h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            p {
+                margin-top: 1rem;
+                color: var(--subtle);
+                opacity: 0.8;
+
+                .draft {
+                    color: var(--red);
+                }
+            }
+        }
+
+        @media (width >= 1024px) {
             grid-template-areas:
+                'sidebar title'
                 'sidebar content'
-                'sidebar notes';
-
+                'sidebar notes'
+                'sidebar comments';
             grid-template-columns: 1fr 3fr;
         }
-    }
 
-    @media (min-width: 1440px) {
-        .grid-layout\:article {
-            grid-template-areas: 'sidebar content notes';
+        @media (width >= 1440px) {
+            grid-template-areas:
+                'sidebar title notes'
+                'sidebar content notes'
+                'sidebar comments notes';
             grid-template-columns: 1fr 3fr 1fr;
         }
     }
 
-    :global(#article) {
-        & :global(> article h1) {
+    .toc {
+        top: 4.5rem;
+        grid-area: sidebar;
+        align-self: self-start;
+        margin: 0 0.5rem;
+
+        @media (width > 64rem) {
+            position: sticky;
+        }
+
+        @media (width <= 1024px) {
+            width: calc(100% - 2rem);
+            padding: 1rem 0;
+            background: var(--surface);
+        }
+    }
+
+    .content {
+        overflow: scroll;
+        grid-area: content;
+
+        width: min(100vw - 2rem, 75ch);
+        margin-bottom: 1rem;
+        padding: 0 1rem;
+        padding-bottom: 1rem;
+        border-radius: 0 0 1rem 1rem;
+
+        font-size: 1.2rem;
+
+        background: var(--surface);
+
+        p {
+            max-width: 75ch;
+        }
+    }
+
+    :global(#article > .content) {
+        & :global(h1) {
+            --col: var(--primary);
+
             font-size: 2.5rem;
         }
 
         & :global(:is(h1, h2, h3, h4, h5, h6)) {
             transform: none !important;
+            color: var(--col);
+
             & :global(> a) {
-                display: inline-block;
                 position: relative;
+
+                display: inline-block;
+
+                color: var(--col);
                 text-decoration: none;
+
                 transition: all 300ms var(--m3-easing);
 
                 &::after {
-                    background: var(--col) none repeat scroll;
-                    bottom: 0;
                     content: '';
-                    display: block;
-                    height: 0.125rem;
+
                     position: absolute;
-                    transition: all 300ms var(--m3-easing);
+                    bottom: 0;
+
+                    display: block;
+
                     width: 0;
+                    height: 0.125rem;
+
+                    background: var(--col) none repeat scroll;
+
+                    transition: all 300ms var(--m3-easing);
                 }
 
                 &:hover {
                     color: var(--col);
+
                     &::after {
                         width: 100%;
                     }
@@ -182,66 +274,73 @@
             }
         }
 
-        & :global(h1 > a) {
-            color: var(--primary) !important;
+        & :global(h2) {
+            --col: var(--primary);
         }
 
-        & :global(h2 > a) {
-            color: var(--primary) !important;
+        & :global(h3) {
+            --col: var(--red);
         }
 
-        & :global(h3 > a) {
-            color: var(--vred) !important;
+        & :global(h4) {
+            --col: var(--orange);
         }
 
-        & :global(h4 > a) {
-            color: var(--vorange) !important;
+        & :global(h5) {
+            --col: var(--green);
         }
 
-        & :global(h5 > a) {
-            color: var(--vgreen) !important;
-        }
-
-        & :global(h6 > a) {
-            color: var(--vteal) !important;
+        & :global(h6) {
+            --col: var(--teal);
         }
 
         & :global(a) {
-            color: var(--vblue) !important;
+            color: var(--blue);
         }
 
         & :global(pre) {
-            border-radius: 1rem;
-            padding: 1rem;
-            max-width: calc(100vw - 4rem);
             overflow-x: auto;
+            max-width: calc(100vw - 4rem);
+            padding: 1rem;
+            border-radius: 1rem;
         }
 
         & :global(code) {
-            border-radius: 1rem;
             overflow-x: auto;
+            border-radius: 1rem;
         }
 
         :global(:is(.callout, .blockquote)) {
-            border-radius: 1rem;
-            padding: 1rem;
-            margin: 1rem;
             overflow-x: auto;
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        :global(> *:not(:last-child)) {
+            margin-bottom: 1rem;
         }
 
         @media (prefers-color-scheme: dark) {
             & :global(:is(.shiki, .shiki span)) {
-                color: var(--shiki-dark) !important;
-                background-color: var(--shiki-dark-bg) !important;
+                font-weight: var(--shiki-dark-font-weight) !important;
+
                 /* Optional, if you also want font styles */
                 font-style: var(--shiki-dark-font-style) !important;
-                font-weight: var(--shiki-dark-font-weight) !important;
+                color: var(--shiki-dark) !important;
                 text-decoration: var(--shiki-dark-text-decoration) !important;
+
+                background-color: var(--shiki-dark-bg) !important;
             }
 
             :global(:is(.callout, .blockquote)) {
                 --callout-bg-color: #060516;
             }
         }
+    }
+
+    :global(.comments) {
+        grid-area: comments;
+        width: 100%;
     }
 </style>
