@@ -27,7 +27,7 @@
         0.998 86.4%,
         1
     );
-    --subtle: oklch(30% 0.04 284deg);
+    --subtle: color(from var(--base) lab l a b / 80%);
 
     /* https://rc.css.master.co/guide/responsive-design */
     --4xs: 22.5rem;

@@ -22,8 +22,8 @@
 
 {#snippet dropdownSection(title, Icon, content)}
     <div class="dropdown-section">
-        <span>
-            <Icon class="icon" />
+        <span id="dropdown-section-{title}">
+            <Icon class="icon" aria-labelledby="dropdown-section-{title}" />
             {title}
         </span>
 
@@ -36,13 +36,13 @@
         <ul>
             <li>
                 <a href={localizeHref('/')}>
-                    <Arrow />
+                    <Arrow aria-hidden="true" />
                     {m.header_home()}
                 </a>
             </li>
             <li>
                 <a href={localizeHref('/posts')}>
-                    <Arrow />
+                    <Arrow aria-hidden="true" />
                     {m.header_posts()}
                 </a>
             </li>
@@ -71,7 +71,7 @@
     <section>
         <a href="/posts/the-wobbler" aria-label={m.profile_picture_caption()}>
             <enhanced:img
-                alt="My profile picture, a badly drawn Wobbler from Totally Accurate Battle Simulator."
+                alt="A badly drawn wobbler from Totally Accurate Battle Simulator with an abstract background"
                 sizes="32px 48px 64px"
                 src="$lib/pictures/wobbler.png"
             >
@@ -98,9 +98,9 @@
         {@render links()}
         <details id="language-dropdown">
             <summary>
-                <Language />
+                <Language aria-label="Language" />
                 {translateLocale(getLocale())}
-                <DropDown />
+                <DropDown aria-label="Dropdown menu" />
             </summary>
             {@render langs()}
         </details>
@@ -126,7 +126,6 @@
         height: 3rem;
         margin: 0 1rem;
         margin-bottom: 1rem;
-        border: solid 2px var(--subtle);
         border-radius: 1.5rem;
 
         backdrop-filter: blur(2rem);
@@ -189,12 +188,11 @@
 
             summary {
                 display: flex;
-                place-items: center;
+                align-items: center;
+                justify-content: center;
 
-                width: 2rem;
-                height: 2rem;
-                margin: 0.25rem;
-                padding: 0 0.2rem;
+                width: 3rem;
+                height: 3rem;
                 border-radius: 1.5rem;
 
                 list-style: none;

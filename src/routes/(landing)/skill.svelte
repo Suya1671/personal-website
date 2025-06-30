@@ -73,10 +73,8 @@
 </script>
 
 <details name="skill">
-    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <summary>
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-        {@html skill.icon}
+        <skill.icon width="2.5em" height="2.5em" aria-label="{skill.name} Logo"></skill.icon>
         <hgroup>
             <h1>
                 {skill?.name}

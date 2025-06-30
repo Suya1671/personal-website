@@ -170,11 +170,11 @@
             </ul>
             <ul class="contact">
                 <li>
-                    <Email />
+                    <Email aria-label="Email Logo" />
                     <a href="mailto:suyashtnt@gmail.com"> Suyashtnt@gmail.com </a>
                 </li>
                 <li>
-                    <Discord />
+                    <Discord aria-label="Discord Logo" />
                     <a
                         href="https://discord.com"
                         onclick={(e) => {
@@ -256,10 +256,19 @@
         margin-top: 0;
 
         color: var(--base);
-
         background-color: var(--background);
 
         & > :first-child {
+            --col: var(--background);
+            --link: var(--blue-300);
+            --visited: var(--purple-300);
+
+            color: var(--col);
+            @media (prefers-color-scheme: dark) {
+                --col: var(--base);
+                --link: var(--blue);
+                --visited: var(--purple);
+            }
             position: relative;
 
             display: flex;
@@ -272,13 +281,14 @@
             padding: 1rem;
             border-radius: 1.2rem;
 
-            background-image: var(--bg);
+            background: var(--bg);
             background-position: center;
             background-size: cover;
 
             &::before {
                 content: '';
 
+                backdrop-filter: blur(4px) brightness(30%);
                 position: absolute;
                 top: 0;
 
@@ -288,7 +298,11 @@
                 height: 100%;
                 border-radius: 1rem;
 
-                backdrop-filter: blur(4px) brightness(30%);
+                backdrop-filter: blur(4px) brightness(70%);
+
+                @media (prefers-color-scheme: dark) {
+                    backdrop-filter: blur(4px) brightness(30%);
+                }
             }
 
             & > * {
@@ -430,23 +444,23 @@
                         a {
                             display: flex;
 
-                            color: var(--base);
-                            text-decoration: underline var(--blue);
+                            color: var(--col);
+                            text-decoration: underline var(--link);
                             text-underline-offset: 14;
 
                             transition: all 300ms;
 
                             &:visited {
-                                color: var(--base);
-                                text-decoration: underline var(--purple);
+                                color: var(--col);
+                                text-decoration: underline var(--visited);
                             }
 
                             &:hover {
-                                text-decoration: underline var(--blue);
+                                text-decoration: underline var(--link);
                                 text-underline-offset: 14;
 
                                 > span {
-                                    color: var(--blue);
+                                    color: var(--link);
                                 }
                             }
                         }
@@ -484,16 +498,16 @@
                         align-items: center;
 
                         a {
-                            color: var(--base);
+                            color: var(--col);
 
                             &:hover {
-                                color: var(--blue);
-                                text-decoration: underline var(--blue);
+                                color: var(--link);
+                                text-decoration: underline var(--link);
                             }
 
                             &:visited {
-                                color: var(--base);
-                                text-decoration: underline var(--purple);
+                                color: var(--col);
+                                text-decoration: underline var(--visited);
                             }
                         }
                     }

@@ -33,10 +33,10 @@
 <ul>
     {#each posts as post (post.slug)}
         <li>
-            <a href={localizeHref(`/posts/${post.slug}`)}>
+            <a href={localizeHref(`/posts/${post.slug}`)} aria-labelledby={post.slug}>
                 <article use:transition={`post-${post.slug}`}>
                     <header>
-                        <h1 use:transition={`post-title-${post.slug}`}>
+                        <h1 use:transition={`post-title-${post.slug}`} id={post.slug}>
                             {post.title}
                         </h1>
 
@@ -126,8 +126,8 @@
                         }
 
                         p {
-                            color: var(--base);
-                            opacity: 0.7;
+                            color: var(--subtle);
+                            font-size: 0.9rem;
                         }
                     }
 

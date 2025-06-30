@@ -19,7 +19,7 @@
 
 <Island component={Hero}></Island>
 
-<Skills {data} />
+<Skills />
 
 <h2>Posts</h2>
 
