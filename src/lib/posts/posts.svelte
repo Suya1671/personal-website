@@ -126,8 +126,8 @@
                         }
 
                         p {
-                            color: var(--subtle);
                             font-size: 0.9rem;
+                            color: var(--subtle);
                         }
                     }
 

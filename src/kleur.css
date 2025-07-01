@@ -1,7 +1,7 @@
 :root {
-    --background: light-dark(oklch(0.96 0.02 284), oklch(0.14 0.03 285.58));
-    --overlay: light-dark(oklch(0.95 0.02 284), oklch(0.2 0.055 285.58));
-    --surface: light-dark(oklch(0.99 0.02 283.97), oklch(0.16 0.055 285.58));
+    --background: light-dark(oklch(96% 0.02 284deg), oklch(14% 0.03 285.58deg));
+    --overlay: light-dark(oklch(95% 0.02 284deg), oklch(20% 0.055 285.58deg));
+    --surface: light-dark(oklch(99% 0.02 283.97deg), oklch(16% 0.055 285.58deg));
     --base-100: light-dark(lch(83% 5 287deg), lch(40% 7 295deg));
     --base-200: light-dark(lch(72% 5 286deg), lch(55% 5 295deg));
     --base-300: light-dark(lch(61% 4 291deg), lch(67% 4 296deg));

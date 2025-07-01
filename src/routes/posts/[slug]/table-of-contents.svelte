@@ -9,14 +9,17 @@
     import ToC from './table-of-contents.svelte';
 
     let {
-        item,
+        item: itemProp,
         level = 1,
         tree
     }: {
-        item: TableOfContentsElements['item'];
+        item?: TableOfContentsElements['item'];
         level?: number;
         tree?: TableOfContentsItem[];
     } = $props();
+
+    // Safety of !: if it doesn't exist, it means we're a level 1 ToC. It'll be handled by the if statement below
+    let item = $state(itemProp!);
 
     if (level == 1) {
         const { elements, states } = createTableOfContents({

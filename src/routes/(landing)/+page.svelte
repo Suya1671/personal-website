@@ -2,7 +2,6 @@
     import PageHead from '$lib/components/page-head.svelte';
     import * as m from '$lib/paraglide/messages';
     import Posts from '$lib/posts/posts.svelte';
-    import { Island } from 'sveltekit-islands';
 
     import type { PageData } from './$types';
 
@@ -17,7 +16,7 @@
 
 <PageHead description={m.landingpagedesc()} />
 
-<Island component={Hero}></Island>
+<Hero />
 
 <Skills />
 

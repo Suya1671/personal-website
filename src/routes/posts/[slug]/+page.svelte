@@ -8,7 +8,6 @@
 
     import './giscus.css';
 
-    import { Island } from 'sveltekit-islands';
     import { setupViewTransition } from 'sveltekit-view-transition';
 
     import type { PageData } from './$types';
@@ -64,7 +63,7 @@
     use:transition={`post-${data.slug}`}
 >
     <aside class="toc">
-        <Island component={ToC} />
+        <ToC />
     </aside>
 
     <header>
@@ -89,17 +88,11 @@
 
     <div class="content">
         <p>
-            <!-- This ensures the JS for the component is only loaded if the post requires/asks for it -->
-            {#if data.frontmatter.useJS}
-                <Island component={data.component}></Island>
-            {:else}
-                <data.component></data.component>
-            {/if}
+            <data.component></data.component>
         </p>
     </div>
 
-    <Island
-        component={Giscus}
+    <Giscus
         class="comments"
         props={{
             category: 'Announcements',

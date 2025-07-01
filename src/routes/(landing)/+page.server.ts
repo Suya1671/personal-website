@@ -5,7 +5,6 @@ import type { PageServerLoad } from './$types';
 import type { IProject } from './project.svelte';
 
 export const prerender = true;
-export const csr = false;
 
 export const _projects: IProject[] = [
     {

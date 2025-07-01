@@ -135,7 +135,7 @@
         </div>
         <div class="info">
             <ul class="roles">
-                {#snippet tag(name, content, href)}
+                {#snippet tag(name: string, content: string, href?: string)}
                     <li>
                         <h2
                             class={name}
@@ -256,6 +256,7 @@
         margin-top: 0;
 
         color: var(--base);
+
         background-color: var(--background);
 
         & > :first-child {
@@ -263,12 +264,6 @@
             --link: var(--blue-300);
             --visited: var(--purple-300);
 
-            color: var(--col);
-            @media (prefers-color-scheme: dark) {
-                --col: var(--base);
-                --link: var(--blue);
-                --visited: var(--purple);
-            }
             position: relative;
 
             display: flex;
@@ -281,6 +276,8 @@
             padding: 1rem;
             border-radius: 1.2rem;
 
+            color: var(--col);
+
             background: var(--bg);
             background-position: center;
             background-size: cover;
@@ -288,7 +285,6 @@
             &::before {
                 content: '';
 
-                backdrop-filter: blur(4px) brightness(30%);
                 position: absolute;
                 top: 0;
 
@@ -297,7 +293,6 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 1rem;
-
                 backdrop-filter: blur(4px) brightness(70%);
 
                 @media (prefers-color-scheme: dark) {
@@ -383,6 +378,9 @@
                                 var(--primary-100),
                                 var(--secondary-100)
                             );
+                            background-clip: text;
+
+                            -webkit-text-fill-color: transparent;
 
                             @media (prefers-color-scheme: dark) {
                                 background-image: linear-gradient(
@@ -391,10 +389,6 @@
                                     var(--secondary)
                                 );
                             }
-
-                            background-clip: text;
-
-                            -webkit-text-fill-color: transparent;
                         }
 
                         [aria-hidden] {
@@ -529,6 +523,12 @@
                         flex-direction: column;
                     }
                 }
+            }
+
+            @media (prefers-color-scheme: dark) {
+                --col: var(--base);
+                --link: var(--blue);
+                --visited: var(--purple);
             }
         }
 
