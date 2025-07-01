@@ -380,9 +380,18 @@
                             display: inline;
                             background-image: linear-gradient(
                                 60deg,
-                                var(--primary),
-                                var(--secondary)
+                                var(--primary-100),
+                                var(--secondary-100)
                             );
+
+                            @media (prefers-color-scheme: dark) {
+                                background-image: linear-gradient(
+                                    60deg,
+                                    var(--primary),
+                                    var(--secondary)
+                                );
+                            }
+
                             background-clip: text;
 
                             -webkit-text-fill-color: transparent;
