@@ -1,13 +1,13 @@
-import remarkCallouts from '@portaljs/remark-callouts';
-import { defineMDSveXConfig as defineConfig } from 'mdsvex';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeSlug from 'rehype-slug';
-import remarkAbbr from 'remark-abbr';
-import remarkGithub from 'remark-github';
-import { codeToHtml } from 'shiki';
+import remarkCallouts from '@portaljs/remark-callouts'
+import { defineMDSveXConfig as defineConfig } from 'mdsvex'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeSlug from 'rehype-slug'
+import remarkAbbr from 'remark-abbr'
+import remarkGithub from 'remark-github'
+import { codeToHtml } from 'shiki'
 
-import syntaxDark from './syntax-dark.json' with { type: 'json' };
-import syntaxLight from './syntax-light.json' with { type: 'json' };
+import syntaxDark from './syntax-dark.json' with { type: 'json' }
+import syntaxLight from './syntax-light.json' with { type: 'json' }
 
 /**
  * @param {string} code
@@ -24,7 +24,7 @@ async function highlighter(code, lang = '') {
             .replace(/{/g, '&#123;')
             .replace(/}/g, '&#125;')
             .replace(/`/g, '&#96;')
-            .replace(/\\([trn])/g, ' ');
+            .replace(/\\([trn])/g, ' ')
 
     const html = await codeToHtml(code, {
         lang,
@@ -32,9 +32,9 @@ async function highlighter(code, lang = '') {
             dark: syntaxDark,
             light: syntaxLight
         }
-    });
+    })
 
-    return escape_svelty(html);
+    return escape_svelty(html)
 }
 
 const config = defineConfig({
@@ -68,6 +68,6 @@ const config = defineConfig({
     smartypants: {
         dashes: 'oldschool'
     }
-});
+})
 
-export default config;
+export default config

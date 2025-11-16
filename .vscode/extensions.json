@@ -1,6 +1,3 @@
 {
-  "recommendations": [
-    "svelte.svelte-vscode",
-    "inlang.vs-code-extension"
-  ]
+    "recommendations": ["svelte.svelte-vscode", "inlang.vs-code-extension"]
 }

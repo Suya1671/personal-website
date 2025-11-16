@@ -1,9 +1,9 @@
 <script module lang="ts">
-    export interface IProject {
-        description: string;
-        name: string;
-        url: string;
-    }
+export interface IProject {
+    description: string
+    name: string
+    url: string
+}
 </script>
 
 <script lang="ts">

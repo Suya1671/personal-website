@@ -1,52 +1,52 @@
 <script lang="ts">
-    import { browser } from '$app/environment';
-    import PageHead from '$lib/components/page-head.svelte';
-    import * as m from '$lib/paraglide/messages';
-    import { getLocale } from '$lib/paraglide/runtime';
-    import '@portaljs/remark-callouts/styles.css';
-    import Giscus from '@giscus/svelte';
+import { browser } from '$app/environment'
+import PageHead from '$lib/components/page-head.svelte'
+import * as m from '$lib/paraglide/messages'
+import { getLocale } from '$lib/paraglide/runtime'
+import '@portaljs/remark-callouts/styles.css'
+import Giscus from '@giscus/svelte'
 
-    import './giscus.css';
+import './giscus.css'
 
-    import { setupViewTransition } from 'sveltekit-view-transition';
+import { setupViewTransition } from 'sveltekit-view-transition'
 
-    import type { PageData } from './$types';
+import type { PageData } from './$types'
 
-    import ToC from './table-of-contents.svelte';
+import ToC from './table-of-contents.svelte'
 
-    interface Props {
-        data: PageData;
-    }
-    const { data }: Props = $props();
+interface Props {
+    data: PageData
+}
+const { data }: Props = $props()
 
-    if (
-        !data.frontmatter.date ||
-        !data.frontmatter.updated ||
-        !data.frontmatter.description ||
-        data.frontmatter.published === undefined
-    ) {
-        throw new Error('Missing date or updated in frontmatter');
-    }
+if (
+    !data.frontmatter.date ||
+    !data.frontmatter.updated ||
+    !data.frontmatter.description ||
+    data.frontmatter.published === undefined
+) {
+    throw new Error('Missing date or updated in frontmatter')
+}
 
-    // Svelte's template doesn't recognize the type narrowing done above
-    const description = data.frontmatter.description;
-    const draft = !data.frontmatter.published;
+// Svelte's template doesn't recognize the type narrowing done above
+const description = data.frontmatter.description
+const draft = !data.frontmatter.published
 
-    const datePublished = new Date(data.frontmatter.date);
-    const dateModified = new Date(data.frontmatter.updated);
+const datePublished = new Date(data.frontmatter.date)
+const dateModified = new Date(data.frontmatter.updated)
 
-    const dateFormatter = new Intl.DateTimeFormat('en-uk', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-    });
+const dateFormatter = new Intl.DateTimeFormat('en-uk', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+})
 
-    const { transition } = setupViewTransition();
+const { transition } = setupViewTransition()
 
-    const getTheme = () => {
-        if (!browser) return;
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
+const getTheme = () => {
+    if (!browser) return
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
 </script>
 
 <PageHead {description} title={data.frontmatter.title} />

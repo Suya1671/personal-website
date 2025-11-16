@@ -1,23 +1,23 @@
 <script lang="ts">
-    import { page } from '$app/state';
-    import * as m from '$lib/paraglide/messages.js';
-    import { getLocale, type Locale, locales, localizeHref } from '$lib/paraglide/runtime.js';
-    import DropDown from '~icons/material-symbols/arrow-drop-down';
-    import Language from '~icons/material-symbols/language';
-    import Menu from '~icons/material-symbols/menu-rounded';
-    import Link from '~icons/material-symbols/open-in-new';
-    import Arrow from '~icons/material-symbols/play-arrow-rounded';
+import { page } from '$app/state'
+import * as m from '$lib/paraglide/messages.js'
+import { getLocale, type Locale, locales, localizeHref } from '$lib/paraglide/runtime.js'
+import DropDown from '~icons/material-symbols/arrow-drop-down'
+import Language from '~icons/material-symbols/language'
+import Menu from '~icons/material-symbols/menu-rounded'
+import Link from '~icons/material-symbols/open-in-new'
+import Arrow from '~icons/material-symbols/play-arrow-rounded'
 
-    const translateLocale = (locale: Locale) => {
-        switch (locale) {
-            case 'af':
-                return m.lang_af();
-            case 'en':
-                return m.lang_en();
-            default:
-                return locale;
-        }
-    };
+const translateLocale = (locale: Locale) => {
+    switch (locale) {
+        case 'af':
+            return m.lang_af()
+        case 'en':
+            return m.lang_en()
+        default:
+            return locale
+    }
+}
 </script>
 
 {#snippet dropdownSection(title, Icon, content)}

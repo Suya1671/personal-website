@@ -1,107 +1,107 @@
 <script lang="ts">
-    import { browser } from '$app/environment';
-    import { createImageSet } from '$lib/helpers/css';
-    import { easeEmphasizedCss } from '$lib/helpers/easing';
-    import * as m from '$lib/paraglide/messages';
-    import Orbit from '$lib/pictures/Orbit.png?w=600;300&h=240;600;800&enhanced';
-    import { createTimeline, utils, waapi } from 'animejs';
-    import { onMount } from 'svelte';
-    import Discord from '~icons/ic/baseline-discord';
-    import Email from '~icons/material-symbols/mail-outline';
+import { browser } from '$app/environment'
+import { createImageSet } from '$lib/helpers/css'
+import { easeEmphasizedCss } from '$lib/helpers/easing'
+import * as m from '$lib/paraglide/messages'
+import Orbit from '$lib/pictures/Orbit.png?w=600;300&h=240;600;800&enhanced'
+import { createTimeline, utils, waapi } from 'animejs'
+import { onMount } from 'svelte'
+import Discord from '~icons/ic/baseline-discord'
+import Email from '~icons/material-symbols/mail-outline'
 
-    const names = ['Suya Singh', 'Suya\\1671', 'A Badly Drawn Wobbler'];
-    const longestName = names.reduce((a, b) => (a.length > b.length ? a : b));
+const names = ['Suya Singh', 'Suya\\1671', 'A Badly Drawn Wobbler']
+const longestName = names.reduce((a, b) => (a.length > b.length ? a : b))
 
-    const prefersReducedMotion = () => {
-        if (!browser) throw new Error('prefersReducedMotion is only available in the browser');
-        return matchMedia('(prefers-reduced-motion: reduce)').matches;
-    };
+const prefersReducedMotion = () => {
+    if (!browser) throw new Error('prefersReducedMotion is only available in the browser')
+    return matchMedia('(prefers-reduced-motion: reduce)').matches
+}
 
-    const animateWord = (word: string) => {
-        if (prefersReducedMotion()) return;
-        const selector = `.${word} .letter`;
+const animateWord = (word: string) => {
+    if (prefersReducedMotion()) return
+    const selector = `.${word} .letter`
 
-        waapi.animate(selector, {
-            '--casl': () => utils.random(0, 1),
-            duration: 300,
-            ease: easeEmphasizedCss,
-            fontWeight: [400, 900],
-            rotate: () => utils.random(-15, 15),
-            scale: () => utils.random(0.95, 1.05),
-            x: () => utils.random(-15, 15),
-            y: () => utils.random(-15, 15)
-        });
-    };
+    waapi.animate(selector, {
+        '--casl': () => utils.random(0, 1),
+        duration: 300,
+        ease: easeEmphasizedCss,
+        fontWeight: [400, 900],
+        rotate: () => utils.random(-15, 15),
+        scale: () => utils.random(0.95, 1.05),
+        x: () => utils.random(-15, 15),
+        y: () => utils.random(-15, 15)
+    })
+}
 
-    const endAnimateWord = (word: string) => {
-        const selector = `.${word} .letter`;
+const endAnimateWord = (word: string) => {
+    const selector = `.${word} .letter`
 
-        waapi.animate(selector, {
-            '--casl': [1, 0],
-            duration: 300,
-            ease: easeEmphasizedCss,
-            fontWeight: [900, 400],
-            rotate: 0,
-            scale: 1,
-            x: 0,
-            y: 0
-        });
-    };
+    waapi.animate(selector, {
+        '--casl': [1, 0],
+        duration: 300,
+        ease: easeEmphasizedCss,
+        fontWeight: [900, 400],
+        rotate: 0,
+        scale: 1,
+        x: 0,
+        y: 0
+    })
+}
 
-    const heroBgImageSet = createImageSet(Orbit.sources);
+const heroBgImageSet = createImageSet(Orbit.sources)
 
-    onMount(() => {
-        if (prefersReducedMotion()) return;
-        const duration = 1000;
-        const delay = 5000;
+onMount(() => {
+    if (prefersReducedMotion()) return
+    const duration = 1000
+    const delay = 5000
 
-        CSS.registerProperty({
-            inherits: false,
-            initialValue: '0',
-            name: '--casl',
-            syntax: '<number>'
-        });
+    CSS.registerProperty({
+        inherits: false,
+        initialValue: '0',
+        name: '--casl',
+        syntax: '<number>'
+    })
 
-        const timeline = createTimeline({
-            autoplay: false,
-            defaults: { duration },
-            loop: true
-        });
+    const timeline = createTimeline({
+        autoplay: false,
+        defaults: { duration },
+        loop: true
+    })
 
-        for (const [i] of names.entries()) {
-            const selector = `.name-${i}`;
+    for (const [i] of names.entries()) {
+        const selector = `.name-${i}`
 
-            timeline.call(() =>
-                waapi.animate(selector, {
-                    '--casl': [0, 1],
-                    composition: 'replace',
-                    duration,
-                    ease: easeEmphasizedCss,
-                    filter: ['blur(12px)', 'blur(0px)'],
-                    fontWeight: [100, 600],
-                    opacity: [0, 1],
-                    y: [-30, 0]
-                })
-            );
+        timeline.call(() =>
+            waapi.animate(selector, {
+                '--casl': [0, 1],
+                composition: 'replace',
+                duration,
+                ease: easeEmphasizedCss,
+                filter: ['blur(12px)', 'blur(0px)'],
+                fontWeight: [100, 600],
+                opacity: [0, 1],
+                y: [-30, 0]
+            })
+        )
 
-            timeline.add({ duration: delay });
+        timeline.add({ duration: delay })
 
-            timeline.call(() =>
-                waapi.animate(selector, {
-                    '--casl': [1, 0],
-                    composition: 'replace',
-                    duration,
-                    ease: easeEmphasizedCss,
-                    filter: ['blur(0px)', 'blur(12px)'],
-                    fontWeight: [600, 100],
-                    opacity: [1, 0],
-                    y: [0, 30]
-                })
-            );
-        }
+        timeline.call(() =>
+            waapi.animate(selector, {
+                '--casl': [1, 0],
+                composition: 'replace',
+                duration,
+                ease: easeEmphasizedCss,
+                filter: ['blur(0px)', 'blur(12px)'],
+                fontWeight: [600, 100],
+                opacity: [1, 0],
+                y: [0, 30]
+            })
+        )
+    }
 
-        timeline.play();
-    });
+    timeline.play()
+})
 </script>
 
 <section class="landing">

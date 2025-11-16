@@ -1,46 +1,46 @@
-import type { Locale } from '$lib/paraglide/runtime';
+import type { Locale } from '$lib/paraglide/runtime'
 
-import { allPosts } from '$lib/posts';
-import { v5 as uuid } from 'uuid';
+import { allPosts } from '$lib/posts'
+import { v5 as uuid } from 'uuid'
 
-import type { RequestHandler } from './$types';
+import type { RequestHandler } from './$types'
 
-export const prerender = true;
+export const prerender = true
 
 // keep the old URL so its the same
-const blogUuid = uuid('https://tntman.tech', uuid.URL);
+const blogUuid = uuid('https://tntman.tech', uuid.URL)
 
 function _objectEntries<T extends Record<PropertyKey, unknown>, K extends keyof T, V extends T[K]>(
     o: T
 ) {
-    return Object.entries(o) as [K, V][];
+    return Object.entries(o) as [K, V][]
 }
 
 export const GET: RequestHandler = async () => {
     const posts = await Promise.all(
         _objectEntries(allPosts).map(async ([language, postPromises]) => {
-            const posts = await Promise.all(Object.values(postPromises).map((post) => post()));
+            const posts = await Promise.all(Object.values(postPromises).map((post) => post()))
             return posts.map((post) => ({
                 ...post,
                 language
-            }));
+            }))
         })
-    ).then((posts) => posts.flat());
+    ).then((posts) => posts.flat())
 
-    const publishedPosts = posts.filter((post) => post.published);
-    publishedPosts.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
+    const publishedPosts = posts.filter((post) => post.published)
+    publishedPosts.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 
-    const body = _render(publishedPosts);
+    const body = _render(publishedPosts)
 
     const options = {
         headers: {
             'Cache-Control': 'max-age=0, s-maxage=3600',
             'Content-Type': 'application/atom+xml'
         }
-    };
+    }
 
-    return new Response(body, options);
-};
+    return new Response(body, options)
+}
 
 const _render = (posts: (App.BlogPost & { language: Locale })[]) =>
     `
@@ -56,7 +56,7 @@ const _render = (posts: (App.BlogPost & { language: Locale })[]) =>
   <link rel="license" type="application/rdf+xml"
   href="http://creativecommons.org/licenses/by-nc/4.0/rdf" />
 
-  <updated>${new Date(posts[0]!.updated).toISOString()}</updated>
+  <updated>${new Date(posts[0]?.updated || new Date()).toISOString()}</updated>
 
   <author>
     <name>Suya</name>
@@ -66,7 +66,7 @@ const _render = (posts: (App.BlogPost & { language: Locale })[]) =>
 
   ${posts.map(_renderPost).join('\n')}
 </feed>
-`.trim();
+`.trim()
 
 const _renderPost = (post: App.BlogPost & { language: string }) =>
     `
@@ -95,6 +95,6 @@ const _renderPost = (post: App.BlogPost & { language: string }) =>
     <updated>${new Date(post.updated).toISOString()}</updated>
     <published>${new Date(post.date).toISOString()}</published>
 </entry>
-`.trim();
+`.trim()
 
-const _getPostUuid = (post: App.BlogPost) => uuid(post.slug, blogUuid);
+const _getPostUuid = (post: App.BlogPost) => uuid(post.slug, blogUuid)

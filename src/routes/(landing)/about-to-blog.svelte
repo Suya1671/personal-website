@@ -1,6 +1,6 @@
 <script lang="ts">
-    import dark from '$lib/pictures/interestsToProjectsDark.svg?url';
-    import light from '$lib/pictures/interestsToProjectsLight.svg?url';
+import dark from '$lib/pictures/interestsToProjectsDark.svg?url'
+import light from '$lib/pictures/interestsToProjectsLight.svg?url'
 </script>
 
 <div

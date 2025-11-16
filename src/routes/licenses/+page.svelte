@@ -1,5 +1,5 @@
 <script lang="ts">
-    import PageHead from '$lib/components/page-head.svelte';
+import PageHead from '$lib/components/page-head.svelte'
 </script>
 
 <PageHead description="Licensing information for the chaos portal." title="Licenses" />

@@ -1,33 +1,33 @@
 <script lang="ts">
-    import * as m from '$lib/paraglide/messages';
-    import { getLocale, localizeHref } from '$lib/paraglide/runtime';
-    import { setupViewTransition } from 'sveltekit-view-transition';
+import * as m from '$lib/paraglide/messages'
+import { getLocale, localizeHref } from '$lib/paraglide/runtime'
+import { setupViewTransition } from 'sveltekit-view-transition'
 
-    import type { PageData } from '../../routes/(landing)/$types';
+import type { PageData } from '../../routes/(landing)/$types'
 
-    interface Props {
-        posts: PageData['posts'];
+interface Props {
+    posts: PageData['posts']
+}
+const { posts }: Props = $props()
+
+const locale: Intl.LocalesArgument = (() => {
+    switch (getLocale()) {
+        case 'af':
+            return 'af-za'
+        case 'en':
+            return 'en-za'
+        default:
+            throw new Error(`Unknown locale: ${getLocale()}`)
     }
-    const { posts }: Props = $props();
+})()
 
-    const locale: Intl.LocalesArgument = (() => {
-        switch (getLocale()) {
-            case 'af':
-                return 'af-za';
-            case 'en':
-                return 'en-za';
-            default:
-                throw new Error(`Unknown locale: ${getLocale()}`);
-        }
-    })();
+const dateFormatter = new Intl.DateTimeFormat(locale, {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+})
 
-    const dateFormatter = new Intl.DateTimeFormat(locale, {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric'
-    });
-
-    const { transition } = setupViewTransition();
+const { transition } = setupViewTransition()
 </script>
 
 <ul>

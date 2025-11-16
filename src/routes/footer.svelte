@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { localizeHref } from '$lib/paraglide/runtime';
+import { localizeHref } from '$lib/paraglide/runtime'
 
-    const { footerText }: { footerText: string } = $props();
+const { footerText }: { footerText: string } = $props()
 </script>
 
 <footer>

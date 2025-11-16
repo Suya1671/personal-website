@@ -1,20 +1,20 @@
 <script lang="ts">
-    import { type Snippet } from 'svelte';
-    import { setupViewTransition } from 'sveltekit-view-transition';
+import type { Snippet } from 'svelte'
+import { setupViewTransition } from 'sveltekit-view-transition'
 
-    import type { LayoutData } from './$types';
+import type { LayoutData } from './$types'
 
-    import '../app.css';
-    import Footer from './footer.svelte';
-    import Header from './header.svelte';
+import '../app.css'
+import Footer from './footer.svelte'
+import Header from './header.svelte'
 
-    setupViewTransition();
+setupViewTransition()
 
-    interface Props {
-        children: Snippet;
-        data: LayoutData;
-    }
-    const { children, data }: Props = $props();
+interface Props {
+    children: Snippet
+    data: LayoutData
+}
+const { children, data }: Props = $props()
 </script>
 
 <Header />

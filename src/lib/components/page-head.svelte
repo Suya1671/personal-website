@@ -1,13 +1,13 @@
 <script lang="ts">
-    interface Props {
-        description: string;
-        title?: string;
-    }
+interface Props {
+    description: string
+    title?: string
+}
 
-    const { description, title }: Props = $props();
+const { description, title }: Props = $props()
 
-    const siteTitle = "Suya's Chaos Portal";
-    const formattedTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+const siteTitle = "Suya's Chaos Portal"
+const formattedTitle = title ? `${title} | ${siteTitle}` : siteTitle
 </script>
 
 <svelte:head>

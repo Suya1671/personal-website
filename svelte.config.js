@@ -1,9 +1,9 @@
-import { preprocessMeltUI, sequence } from '@melt-ui/pp';
-import adapter from '@sveltejs/adapter-cloudflare';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { mdsvex } from 'mdsvex';
+import { preprocessMeltUI, sequence } from '@melt-ui/pp'
+import adapter from '@sveltejs/adapter-cloudflare'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import { mdsvex } from 'mdsvex'
 
-import mdsvexConfig from './mdsvex.config.js';
+import mdsvexConfig from './mdsvex.config.js'
 
 /** @type {import('@sveltejs/kit').Config}*/
 const config = {
@@ -20,12 +20,12 @@ const config = {
         },
         typescript: {
             config(config) {
-                config.include.push('../uno.config.ts');
-                config.include.push('../vite.config.ts');
-                config.include.push('../mdsvex.config.js');
-                config.include.push('../eslint.config.js');
-                config.include.push('../svelte.config.js');
-                return config;
+                config.include.push('../uno.config.ts')
+                config.include.push('../vite.config.ts')
+                config.include.push('../mdsvex.config.js')
+                config.include.push('../eslint.config.js')
+                config.include.push('../svelte.config.js')
+                return config
             }
         }
     },
@@ -34,5 +34,5 @@ const config = {
         mdsvex(mdsvexConfig),
         preprocessMeltUI()
     ])
-};
-export default config;
+}
+export default config
