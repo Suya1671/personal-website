@@ -1,7 +1,7 @@
 <script lang="ts">
+import { setupViewTransition } from 'sveltekit-view-transition'
 import * as m from '$lib/paraglide/messages'
 import { getLocale, localizeHref } from '$lib/paraglide/runtime'
-import { setupViewTransition } from 'sveltekit-view-transition'
 
 import type { PageData } from '../../routes/(landing)/$types'
 

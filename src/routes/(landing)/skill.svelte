@@ -127,7 +127,6 @@ export interface ISkill {
         transition-timing-function: var(--m3-easing);
         transition-duration: 600ms;
         transition-property: block-size, content-visibility;
-
         transition-behavior: allow-discrete;
       }
     }

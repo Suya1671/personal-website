@@ -1,5 +1,5 @@
-import * as m from '$lib/paraglide/messages'
 import { error } from '@sveltejs/kit'
+import * as m from '$lib/paraglide/messages'
 
 import type { LayoutServerLoad } from './$types'
 

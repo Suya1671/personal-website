@@ -1,6 +1,5 @@
-import type { Locale } from '$lib/paraglide/runtime'
-
 import { slugFromPath } from '$lib/helpers/slug-from-path'
+import type { Locale } from '$lib/paraglide/runtime'
 
 const englishModules = import.meta.glob<false, '', App.MdsvexFile>(
     `/src/lib/posts/en/*.{md,svx,svelte.md}`

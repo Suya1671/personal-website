@@ -1,7 +1,6 @@
-import type { Locale } from '$lib/paraglide/runtime'
-
-import { allPosts } from '$lib/posts'
 import { v5 as uuid } from 'uuid'
+import type { Locale } from '$lib/paraglide/runtime'
+import { allPosts } from '$lib/posts'
 
 import type { RequestHandler } from './$types'
 

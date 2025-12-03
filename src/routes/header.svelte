@@ -156,7 +156,7 @@ const translateLocale = (locale: Locale) => {
                     height: 3rem;
                     border-radius: 100%;
 
-                    transition: transform box-shadow border-radius;
+                    transition: all;
                     transition-duration: 0.6s;
 
                     &:hover {
@@ -207,7 +207,6 @@ const translateLocale = (locale: Locale) => {
                     transition-timing-function: var(--m3-easing);
                     transition-duration: 600ms;
                     transition-property: block-size, content-visibility;
-
                     transition-behavior: allow-discrete;
                 }
             }
@@ -230,11 +229,10 @@ const translateLocale = (locale: Locale) => {
 
                 transition-duration: 600ms;
                 transition-property: translation, block-size, content-visibility;
-
                 transition-behavior: allow-discrete;
 
                 @media (width > 48rem) {
-                    bg: var(--primary);
+                    background-color: var(--primary);
                 }
             }
 

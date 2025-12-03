@@ -1,11 +1,11 @@
 <script lang="ts">
+import { createTimeline, utils, waapi } from 'animejs'
+import { onMount } from 'svelte'
 import { browser } from '$app/environment'
 import { createImageSet } from '$lib/helpers/css'
 import { easeEmphasizedCss } from '$lib/helpers/easing'
 import * as m from '$lib/paraglide/messages'
 import Orbit from '$lib/pictures/Orbit.png?w=600;300&h=240;600;800&enhanced'
-import { createTimeline, utils, waapi } from 'animejs'
-import { onMount } from 'svelte'
 import Discord from '~icons/ic/baseline-discord'
 import Email from '~icons/material-symbols/mail-outline'
 
@@ -305,6 +305,7 @@ onMount(() => {
         width: 100%;
         height: 100%;
         border-radius: 1rem;
+
         backdrop-filter: blur(4px) brightness(70%);
 
         @media (prefers-color-scheme: dark) {

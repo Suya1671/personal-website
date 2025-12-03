@@ -6,6 +6,17 @@
     ],
     "ignoreFiles": ["node_modules/**/*", ".svelte-kit/**/*"],
     "rules": {
-        "selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global"] }]
+        "selector-pseudo-class-no-unknown": [
+            true,
+            {
+                "ignorePseudoClasses": ["global"]
+            }
+        ],
+        "selector-type-no-unknown": [
+            true,
+            {
+                "ignoreTypes": ["enhanced:img"]
+            }
+        ]
     }
 }

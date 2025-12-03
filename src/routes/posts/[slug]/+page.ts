@@ -1,6 +1,6 @@
+import { error } from '@sveltejs/kit'
 import { getLocale } from '$lib/paraglide/runtime'
 import { allPosts } from '$lib/posts'
-import { error } from '@sveltejs/kit'
 
 import type { PageLoad } from './$types'
 
