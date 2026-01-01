@@ -7,8 +7,9 @@
   # https://devenv.sh/languages/
   languages.javascript = {
     enable = true;
-    package = pkgs.nodejs_24;
+    nodejs.enable = true;
     corepack.enable = true;
+    pnpm.enable = true;
     pnpm.install.enable = true;
   };
 

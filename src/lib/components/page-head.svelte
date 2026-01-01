@@ -7,7 +7,7 @@ interface Props {
 const { description, title }: Props = $props()
 
 const siteTitle = "Suya's Chaos Portal"
-const formattedTitle = title ? `${title} | ${siteTitle}` : siteTitle
+const formattedTitle = $derived(title ? `${title} | ${siteTitle}` : siteTitle)
 </script>
 
 <svelte:head>

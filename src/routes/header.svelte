@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Component, Snippet } from 'svelte'
 import { page } from '$app/state'
 import * as m from '$lib/paraglide/messages.js'
 import { getLocale, type Locale, locales, localizeHref } from '$lib/paraglide/runtime.js'
@@ -20,7 +21,7 @@ const translateLocale = (locale: Locale) => {
 }
 </script>
 
-{#snippet dropdownSection(title, Icon, content)}
+{#snippet dropdownSection(title: string, Icon: Component, content: Snippet)}
     <div class="dropdown-section">
         <span id="dropdown-section-{title}">
             <Icon class="icon" aria-labelledby="dropdown-section-{title}" />
@@ -44,6 +45,12 @@ const translateLocale = (locale: Locale) => {
                 <a href={localizeHref('/posts')}>
                     <Arrow aria-hidden="true" />
                     {m.header_posts()}
+                </a>
+            </li>
+            <li>
+                <a href={localizeHref('/identities')}>
+                    <Arrow aria-hidden="true" />
+                    {m.header_identities()}
                 </a>
             </li>
         </ul>
@@ -156,8 +163,7 @@ const translateLocale = (locale: Locale) => {
                     height: 3rem;
                     border-radius: 100%;
 
-                    transition: all;
-                    transition-duration: 0.6s;
+                    transition: all 0.6s var(--m3-easing);
 
                     &:hover {
                         transform: scale(1.3);

@@ -1,5 +1,10 @@
+allowBuilds:
+    esbuild: true
+    sharp: true
+    workerd: true
+minimumReleaseAgeExclude:
+    - vite@8.1.1
 onlyBuiltDependencies:
-  - esbuild
-  - sharp
-  - svelte-preprocess
-  - workerd
+    - esbuild
+    - sharp
+    - workerd

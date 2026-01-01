@@ -67,9 +67,50 @@ body {
     color: var(--base);
 }
 
+#root {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 100vw;
+    height: 100vh;
+}
+
 button {
     font-family: inherit;
     color: inherit;
+}
+
+.btn {
+    cursor: pointer;
+
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+
+    color: var(--btn-col);
+
+    background-color: color-mix(in srgb, var(--btn-col) 15%, transparent);
+
+    transition: background 200ms;
+
+    &:hover {
+        background-color: color-mix(in srgb, var(--btn-col) 25%, transparent);
+    }
+
+    &:active {
+        background-color: color-mix(in srgb, var(--btn-col) 35%, transparent);
+    }
+}
+
+.btn-primary {
+    --btn-col: var(--primary);
+}
+
+.btn-secondary {
+    --btn-col: var(--secondary);
+}
+
+.btn-red {
+    --btn-col: var(--red);
 }
 
 @media (prefers-reduced-motion) {

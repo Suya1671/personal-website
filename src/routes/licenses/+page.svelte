@@ -4,7 +4,7 @@ import PageHead from '$lib/components/page-head.svelte'
 
 <PageHead description="Licensing information for the chaos portal." title="Licenses" />
 
-<section class="mx:4x text:5x mt:2x">
+<section>
     <h1>Licenses</h1>
 
     <p>

@@ -88,7 +88,7 @@ export interface ISkill {
 
   <article>
     <section class="chips">
-      {#snippet chipContent(content)}
+      {#snippet chipContent(content: string)}
         <p>
           {content}
         </p>

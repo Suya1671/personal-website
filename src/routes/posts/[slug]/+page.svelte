@@ -19,21 +19,23 @@ interface Props {
 }
 const { data }: Props = $props()
 
-if (
-    !data.frontmatter.date ||
-    !data.frontmatter.updated ||
-    !data.frontmatter.description ||
-    data.frontmatter.published === undefined
-) {
-    throw new Error('Missing date or updated in frontmatter')
-}
+$effect(() => {
+    if (
+        !data.frontmatter.date ||
+        !data.frontmatter.updated ||
+        !data.frontmatter.description ||
+        data.frontmatter.published === undefined
+    ) {
+        throw new Error('Missing date or updated in frontmatter')
+    }
+})
 
 // Svelte's template doesn't recognize the type narrowing done above
-const description = data.frontmatter.description
-const draft = !data.frontmatter.published
+const description = $derived(data.frontmatter.description)
+const draft = $derived(!data.frontmatter.published)
 
-const datePublished = new Date(data.frontmatter.date)
-const dateModified = new Date(data.frontmatter.updated)
+const datePublished = $derived(new Date(data.frontmatter.date))
+const dateModified = $derived(new Date(data.frontmatter.updated))
 
 const dateFormatter = new Intl.DateTimeFormat('en-uk', {
     day: '2-digit',
@@ -60,7 +62,6 @@ const getTheme = () => {
 <article
     class="break-word bg:surface grid-area:content r:4x $col:blue $primary:text-primary $vgreen:green $vorange:orange $vred:red $vteal:teal px:4x text:5x justify-self:center max-w:75ch mb:6x hypens-auto md:mx-0 text-justify"
     id="article"
-    use:transition={`post-${data.slug}`}
 >
     <aside class="toc">
         <ToC />
@@ -86,10 +87,8 @@ const getTheme = () => {
         </p>
     </header>
 
-    <div class="content">
-        <p>
-            <data.component></data.component>
-        </p>
+    <div class="content" use:transition={`post-${data.slug}`}>
+        <data.component></data.component>
     </div>
 
     <Giscus
