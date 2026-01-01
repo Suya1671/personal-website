@@ -105,6 +105,7 @@ onMount(() => {
     }
 
     timeline.play()
+    return () => timeline.cancel()
 })
 </script>
 
