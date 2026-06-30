@@ -194,8 +194,8 @@
             <ul class="contact">
                 <li>
                     <Email aria-label="Email Logo" />
-                    <a href="mailto:suyashtnt@gmail.com">
-                        Suyashtnt@gmail.com
+                    <a href="mailto:im@wobbl.in" rel="me">
+                        im@wobbl.in
                     </a>
                 </li>
                 <li>
@@ -207,7 +207,7 @@
                             navigator.clipboard.writeText("wobbl.in");
                             alert("Copied to clipboard!");
                         }}
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer me"
                         target="_blank"
                     >
                         @wobbl.in

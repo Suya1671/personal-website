@@ -59,7 +59,7 @@ const _render = (posts: (App.BlogPost & { language: Locale })[]) =>
 
   <author>
     <name>Suya</name>
-    <email>Suyashtnt@gmail.com</email>
+    <email>im@wobbl.in</email>
     <uri>https://wobbl.in</uri>
   </author>
 
