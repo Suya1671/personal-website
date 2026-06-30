@@ -6,10 +6,10 @@ preview_urls = true
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-NODE_VERSION = "22"
+NODE_VERSION = "24"
 
 [env.production.vars]
-NODE_VERSION = "22"
+NODE_VERSION = "24"
 
 [assets]
 directory = ".svelte-kit/cloudflare"
